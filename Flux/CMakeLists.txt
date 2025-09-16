@@ -4,10 +4,8 @@
 
 cmake_minimum_required (VERSION 3.8)
 
-project ("flux")
-
 # Add source to this project's executable.
-add_library (flux STATIC flux.cpp
+add_library (flux STATIC
         flux.cpp
         flux.h)
 
