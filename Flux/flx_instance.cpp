@@ -23,7 +23,7 @@ void FLX_Instance::run() const {
         }
     }
 
-
+    _cleanup();
 }
 
 void FLX_Instance::_cleanup() const {
