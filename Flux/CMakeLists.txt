@@ -11,10 +11,6 @@ endif()
 target_include_directories(flux
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-target_include_directories(flux
-        PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_image/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_mixer/include

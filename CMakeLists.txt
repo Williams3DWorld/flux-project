@@ -5,9 +5,9 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("game-project"
+project ("flux-project"
   VERSION 1.0.0
 )
 
 add_subdirectory ("Flux")
-add_subdirectory ("Game")
+add_subdirectory ("Sandbox")
