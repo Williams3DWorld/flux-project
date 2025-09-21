@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv) {
 	FLX_Init();
-	FLX_Instance instance = FLX_CreateInstance({});
+	const FLX_Instance instance = FLX_CreateInstance({});
 
 	instance.run();
 
