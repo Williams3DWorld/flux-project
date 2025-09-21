@@ -11,7 +11,7 @@ inline FLX_Instance FLX_CreateInstance(const FLX_InstanceOptions &options) {
 }
 
 inline void FLX_Init() {
-    if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
         std::cout << "SDL_Init failed: " << SDL_GetError() << std::endl;
         return;
     }
