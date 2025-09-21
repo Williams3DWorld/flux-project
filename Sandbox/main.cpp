@@ -1,14 +1,10 @@
 ﻿#include <iostream>
-#include <flux.h>
+#include <flx.h>
 
 int main(int argc, char** argv) {
 
-	flux::init();
-
-	while (true)
-	{
-		//
-	}
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+	FLX_Instance instance = FLX_CreateInstance({});
 
 	return 0;
 }

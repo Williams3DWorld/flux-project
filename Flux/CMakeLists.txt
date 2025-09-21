@@ -1,8 +1,13 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
 add_library (flux STATIC
-        flux.cpp
-        flux.h)
+        flx.cpp
+        flx.h
+        flx_window.cpp
+        flx_window.h
+        flx_instance.cpp
+        flx_instance.h
+        flx_size.h)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET flux PROPERTY CXX_STANDARD 20)
