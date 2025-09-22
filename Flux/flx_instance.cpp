@@ -1,10 +1,13 @@
 #include "flx_instance.h"
 
-FLX_Instance::FLX_Instance(const FLX_InstanceOptions& options) :
-    _window(FLX_Window({})) {}
+FLX_Instance::FLX_Instance(const FLX_InstanceOptions& options) : _options(options) {}
 
 void FLX_Instance::run() const {
-    auto running = true;
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
+    const FLX_Window window(_options.window_options);
+
+    bool running = true;
 
     while (running) {
         SDL_Event event{ 0 };
@@ -23,12 +26,5 @@ void FLX_Instance::run() const {
         }
     }
 
-    _cleanup();
+    window.destroy();
 }
-
-void FLX_Instance::_cleanup() const {
-    _window.destroy();
-
-    SDL_Quit();
-}
-

@@ -6,18 +6,16 @@
 #include "flx_window.h"
 
 struct FLX_InstanceOptions {
-
+    FLX_WindowOptions window_options;
 };
 
 class FLX_Instance {
 public:
-    FLX_Instance(const FLX_InstanceOptions& options);
+    explicit FLX_Instance(const FLX_InstanceOptions& options);
     void run() const;
 
 private:
-    void _cleanup() const;
-
-    FLX_Window _window;
+    FLX_InstanceOptions _options;
 };
 
 #endif

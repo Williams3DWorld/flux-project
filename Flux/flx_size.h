@@ -4,8 +4,8 @@
 #define FLX_SIZE_H
 
 struct FLX_Size {
-    int width;
-    int height;
+    int width = 0;
+    int height = 0;
 };
 
 #endif

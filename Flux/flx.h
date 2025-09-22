@@ -5,12 +5,6 @@
 
 #include "flx_instance.h"
 
-inline FLX_Instance FLX_CreateInstance(const FLX_InstanceOptions &options) {
-    return FLX_Instance(options);
-}
-
-namespace FLX {
-    void init();
-};
+FLX_Instance FLX_Init(const FLX_InstanceOptions &options);
 
 #endif

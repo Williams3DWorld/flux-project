@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "flx.h"
 
-//#include <SDL3_image/SDL_image.h>
-//#include <SDL3_mixer/SDL_mixer.h>
+FLX_Instance FLX_Init(const FLX_InstanceOptions &options) {
+    return FLX_Instance(options);
+}
