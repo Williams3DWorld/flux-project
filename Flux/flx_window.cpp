@@ -1,7 +1,7 @@
 #include "flx_window.h"
 
 FLX_Window::FLX_Window(const FLX_WindowOptions &options) {
-    SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE;
+    SDL_WindowFlags flags = SDL_WINDOW_OPENGL;
 
     if (options.fullscreen) {
         flags |= SDL_WINDOW_FULLSCREEN;
