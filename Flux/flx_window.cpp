@@ -18,6 +18,7 @@ FLX_Window::~FLX_Window() {
         destroy();
     }
 }
+
 void FLX_Window::destroy() const {
     SDL_DestroyWindow(_sdl_window);
 }
