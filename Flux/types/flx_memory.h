@@ -24,4 +24,9 @@ flx_unique<T> flx_make_unique(Args&&... args) {
     return std::make_unique<T>(args...);
 }
 
+template<typename T>
+T flx_move(T data) {
+    return std::move<T>(data);
+}
+
 #endif
