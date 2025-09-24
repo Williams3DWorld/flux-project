@@ -12,6 +12,7 @@ struct FLX_InstanceOptions {
 class FLX_Instance {
 public:
     explicit FLX_Instance(const FLX_InstanceOptions& options);
+
     void run() const;
 
 private:

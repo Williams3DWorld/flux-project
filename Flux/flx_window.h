@@ -3,11 +3,9 @@
 #ifndef FLX_WINDOW_H
 #define FLX_WINDOW_H
 
-#include "flx_size.h"
-
 #include <SDL3/SDL.h>
 
-struct FLX_WindowOptions : FLX_Size {
+struct FLX_WindowOptions {
     const char* title = "Flux";
     int width = 800;
     int height = 600;
