@@ -7,7 +7,8 @@ add_library (flux STATIC
         flx_window.h
         flx_instance.cpp
         flx_instance.h
-        flx_size.h)
+        flx_size.h
+        flx_memory.h)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET flux PROPERTY CXX_STANDARD 20)
