@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef FLX_TYPES_H
-#define FLX_TYPES_H
+#ifndef FLX_MEMORY_H
+#define FLX_MEMORY_H
 
 #include <memory>
 
