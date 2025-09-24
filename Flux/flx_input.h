@@ -1,14 +1,14 @@
 #pragma once
 
-#ifndef FLX_INPUT_MANAGER_H
-#define FLX_INPUT_MANAGER_H
+#ifndef FLX_INPUT_H
+#define FLX_INPUT_H
 
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_events.h>
-#include <iostream>
+#include <string>
 #include <unordered_map>
 
-class FLX_InputManager
+class FLX_Input
 {
 public:
     void reset();
