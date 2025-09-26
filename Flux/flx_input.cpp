@@ -1,7 +1,7 @@
 #include "flx_input.h"
 #include <SDL3/SDL_keyboard.h>
 
-void FLX_Input::process_events(const SDL_Event& event) {
+void FLX_Input::update_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_KEY_DOWN) {
         _key_states[event.key.scancode] = true;
     } else if (event.type == SDL_EVENT_KEY_UP) {
@@ -13,7 +13,6 @@ void FLX_Input::update() {
     _keyboard_state = SDL_GetKeyboardState(nullptr);
 }
 
-// for resetting the _key_states array when using sdl_event key input
 void FLX_Input::reset() {
     _key_states.clear();
 }

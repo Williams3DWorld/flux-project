@@ -1,4 +1,5 @@
 #include "flx_instance.h"
+#include <iostream>
 
 FLX_Instance::FLX_Instance(const FLX_InstanceOptions& options) : _options(options) {}
 

@@ -9,7 +9,13 @@ add_library (flux STATIC
         flx_instance.h
         flx_size.h
         flx_input.cpp
-        flx_input.h)
+        flx_input.h
+        flx_input_device.h
+        flx_mouse_device.cpp
+        flx_mouse_device.h
+        flx_keyboard_device.cpp
+        flx_keyboard_device.h
+)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET flux PROPERTY CXX_STANDARD 20)
