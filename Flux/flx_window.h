@@ -3,18 +3,12 @@
 #ifndef FLX_WINDOW_H
 #define FLX_WINDOW_H
 
-#include "flx_size.h"
-
 #include <SDL3/SDL.h>
 
-constexpr auto FLX_WINDOW_DEFAULT_TITLE = "Flux";
-constexpr const int FLX_WINDOW_DEFAULT_WIDTH = 800;
-constexpr const int FLX_WINDOW_DEFAULT_HEIGHT = 600;
-
-struct FLX_WindowOptions : FLX_Size {
-    const char* title = FLX_WINDOW_DEFAULT_TITLE;
-    int width = FLX_WINDOW_DEFAULT_WIDTH;
-    int height = FLX_WINDOW_DEFAULT_HEIGHT;
+struct FLX_WindowOptions {
+    const char* title = "Flux";
+    int width = 800;
+    int height = 600;
     bool fullscreen = false;
     bool resizable = false;
 };

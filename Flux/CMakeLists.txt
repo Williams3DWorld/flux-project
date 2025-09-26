@@ -7,14 +7,10 @@ add_library (flux STATIC
         flx_window.h
         flx_instance.cpp
         flx_instance.h
-        flx_size.h
-        flx_input.cpp
-        flx_input.h
-        flx_input_device.h
-        flx_mouse_device.cpp
-        flx_mouse_device.h
-        flx_keyboard_device.cpp
-        flx_keyboard_device.h
+        types/flx_memory.h
+        types/flx_unordered_map.h
+        scene/components/flx_component.h
+        scene/components/flx_component.cpp
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

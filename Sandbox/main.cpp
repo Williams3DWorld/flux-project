@@ -1,12 +1,13 @@
 ﻿#include <flx.h>
 
 int main(int argc, char** argv) {
-	FLX_Init({
+	const FLX_Instance instance = FLX_CreateInstance({
 		.window_options = FLX_WindowOptions({
-			.resizable = true
+			.title = "Sandbox"
 		})
-	})
-	.run();
+	});
+
+	instance.run();
 
 	return 0;
 }
