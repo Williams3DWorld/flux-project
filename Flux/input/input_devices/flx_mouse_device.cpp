@@ -25,10 +25,10 @@ bool FLX_MouseDevice::is_mouse_button_pressed(const Uint8 index) const {
     return it != _mouse_button_states.end() && it->second == true;
 }
 
-float FLX_MouseDevice::get_mouse_x() const {
+float FLX_MouseDevice::get_mouse_x() const noexcept {
     return _mouse_x;
 }
 
-float FLX_MouseDevice::get_mouse_y() const {
+float FLX_MouseDevice::get_mouse_y() const noexcept {
     return _mouse_y;
 }
