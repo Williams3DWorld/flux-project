@@ -10,7 +10,7 @@ class FLX_MouseDevice final : public FLX_InputDevice {
 public:
     void reset() override;
     void update() override;
-    void update_events(const SDL_Event& event) override;
+    void poll_events(const SDL_Event& event) override;
 
     [[nodiscard]] inline float get_mouse_x() const noexcept;
     [[nodiscard]] inline float get_mouse_y() const noexcept;

@@ -27,6 +27,8 @@ add_library (flux STATIC
         input/input_devices/flx_scancode.h
         input/input_devices/flx_scancode.h
         input/input_devices/flx_device_type.h
+        input/flx_input_map.cpp
+        input/flx_input_map.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

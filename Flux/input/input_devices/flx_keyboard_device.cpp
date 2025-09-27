@@ -1,6 +1,6 @@
 #include "flx_keyboard_device.h"
 
-void FLX_KeyboardDevice::update_events(const SDL_Event& event) {
+void FLX_KeyboardDevice::poll_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_KEY_DOWN ||
         event.type == SDL_EVENT_KEY_UP) {
         const auto scancode = static_cast<FLX_Scancode>(event.key.scancode);

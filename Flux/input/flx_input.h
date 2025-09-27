@@ -17,9 +17,10 @@ public:
     const FLX_MouseDevice* mouse_device();
     const FLX_KeyboardDevice* keyboard_device();
 
+    void register_device(FLX_DeviceType device_type, flx_unique<FLX_InputDevice> device);
     void reset();
     void update();
-    void update_events(const SDL_Event& event) const;
+    void poll_events(const SDL_Event& event) const;
 private:
     flx_unordered_map<FLX_DeviceType, flx_unique<FLX_InputDevice>> _devices;
 };

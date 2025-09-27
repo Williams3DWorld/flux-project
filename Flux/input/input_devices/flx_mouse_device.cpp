@@ -1,7 +1,7 @@
 #include "flx_mouse_device.h"
 #include <iostream>
 
-void FLX_MouseDevice::update_events(const SDL_Event& event) {
+void FLX_MouseDevice::poll_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN ||
         event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
         _mouse_button_states[static_cast<int>(event.button.button)]

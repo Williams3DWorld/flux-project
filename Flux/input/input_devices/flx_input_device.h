@@ -11,7 +11,7 @@ public:
     virtual ~FLX_InputDevice() = default;
     virtual void reset() {};
     virtual void update() {};
-    virtual void update_events(const SDL_Event& event) {};
+    virtual void poll_events(const SDL_Event& event) {};
 };
 
 #endif
