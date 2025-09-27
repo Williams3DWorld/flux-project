@@ -24,6 +24,9 @@ add_library (flux STATIC
         input/input_devices/flx_keyboard_device.cpp
         input/input_devices/flx_keyboard_device.h
         types/flx_vector.h
+        input/input_devices/flx_scancode.h
+        input/input_devices/flx_scancode.h
+        input/input_devices/flx_device_type.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

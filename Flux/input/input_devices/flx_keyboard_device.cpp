@@ -3,7 +3,8 @@
 void FLX_KeyboardDevice::update_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_KEY_DOWN ||
         event.type == SDL_EVENT_KEY_UP) {
-        _key_states[event.key.scancode] = (event.type == SDL_EVENT_KEY_DOWN);
+        const auto scancode = static_cast<FLX_Scancode>(event.key.scancode);
+        _key_states[scancode] = (event.type == SDL_EVENT_KEY_DOWN);
     }
 }
 
@@ -15,11 +16,11 @@ void FLX_KeyboardDevice::reset() {
     _key_states.clear();
 }
 
-inline bool FLX_KeyboardDevice::is_key_down(SDL_Scancode scancode) const {
-    return _keyboard_state[scancode];
+inline bool FLX_KeyboardDevice::is_key_down(FLX_Scancode scancode) const {
+    return _keyboard_state[static_cast<SDL_Scancode>(scancode)];
 }
 
-bool FLX_KeyboardDevice::is_key_pressed(SDL_Scancode scancode) const {
+bool FLX_KeyboardDevice::is_key_pressed(FLX_Scancode scancode) const {
     const auto it = _key_states.find(scancode);
     return it != _key_states.end() && it->second == true;
 }
