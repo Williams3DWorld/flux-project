@@ -3,6 +3,7 @@
 #ifndef FLX_INPUT_H
 #define FLX_INPUT_H
 
+#include "./input_devices/flx_device_type.h"
 #include "./input_devices/flx_input_device.h"
 #include "./input_devices/flx_mouse_device.h"
 #include "./input_devices/flx_keyboard_device.h"
