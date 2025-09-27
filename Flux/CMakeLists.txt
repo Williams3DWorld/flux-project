@@ -22,6 +22,12 @@ add_library (flux STATIC
         flx_loader.cpp
         flx_loader.h
         types/flx_path_map.h
+        services/asset/flx_asset.cpp
+        services/asset/flx_asset.h
+        services/asset/flx_texture.cpp
+        services/asset/flx_texture.h
+        services/asset/flx_asset_type.h
+        types/flx_string.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

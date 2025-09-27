@@ -9,6 +9,8 @@
 #include "types/flx_memory.h"
 #include "types/flx_path_map.h"
 
+// TODO: Make this more generic and have an inherited FLX_AssetLoader instead
+
 struct FLX_LoaderConfig {
     const flx_path_map path_config;
 };

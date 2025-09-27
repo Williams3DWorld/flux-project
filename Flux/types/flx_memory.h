@@ -24,9 +24,14 @@ flx_unique<T> flx_make_unique(Args&&... args) {
     return std::make_unique<T>(args...);
 }
 
-template<typename T>
-T flx_move(T data) {
-    return std::move<T>(data);
+template <typename T>
+constexpr decltype(auto) flx_move(T&& t) noexcept {
+    return std::move(t);
+}
+
+template <typename T>
+constexpr decltype(auto) flx_forward(T&& t) noexcept {
+    return std::forward<T>(t);
 }
 
 #endif
