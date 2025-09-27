@@ -9,6 +9,10 @@
 #include "types/flx_memory.h"
 #include "types/flx_path_map.h"
 
+struct FLX_LoaderConfig {
+    const flx_path_map path_config;
+};
+
 template<typename T>
 concept FLX_LoaderConfigDerived = flx_is_base_of<FLX_LoaderConfig, T>;
 
@@ -17,11 +21,7 @@ concept FLX_ResourceDerived = flx_is_base_of<FLX_Resource<ResourceConfig>, T>;
 
 template<typename ResourceConfig, typename Resource>
 requires FLX_ResourceDerived<Resource, ResourceConfig>
-using FLX_LoaderResult = flx_unique<Resource>;
-
-struct FLX_LoaderConfig {
-    const flx_path_map path_config;
-};
+using FLX_LoaderResult = flx_unordered_map<const char*, flx_unique<Resource>>;
 
 template<typename LoaderConfig, typename ResourceConfig, typename Resource>
 requires FLX_LoaderConfigDerived<LoaderConfig> && FLX_ResourceDerived<Resource, ResourceConfig>
