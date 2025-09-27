@@ -6,17 +6,17 @@
 #include "flx_input_device.h"
 #include "../../types/flx_unordered_map.h"
 
-class FLX_MouseDevice : public FLX_InputDevice {
+class FLX_MouseDevice final : public FLX_InputDevice {
 public:
-    float get_mouse_x() const noexcept;
-    float get_mouse_y() const noexcept;
-
     void reset() override;
     void update() override;
     void update_events(const SDL_Event& event) override;
 
-    bool is_mouse_button_down(Uint8 index) const;
-    bool is_mouse_button_pressed(Uint8 index) const;
+    [[nodiscard]] inline float get_mouse_x() const noexcept;
+    [[nodiscard]] inline float get_mouse_y() const noexcept;
+
+    [[nodiscard]] inline bool is_mouse_button_down(Uint8 index) const;
+    [[nodiscard]] bool is_mouse_button_pressed(Uint8 index) const;
 private:
     float _mouse_x = 0;
     float _mouse_y = 0;

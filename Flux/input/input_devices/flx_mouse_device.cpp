@@ -1,10 +1,11 @@
 #include "flx_mouse_device.h"
+#include <iostream>
 
 void FLX_MouseDevice::update_events(const SDL_Event& event) {
-    if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-        _mouse_button_states[event.button.button] = true;
-    } else if (event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
-        _mouse_button_states[event.button.button] = false;
+    if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN ||
+        event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
+        _mouse_button_states[static_cast<int>(event.button.button)]
+                = (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN);
     }
 }
 
@@ -25,10 +26,10 @@ bool FLX_MouseDevice::is_mouse_button_pressed(const Uint8 index) const {
     return it != _mouse_button_states.end() && it->second == true;
 }
 
-float FLX_MouseDevice::get_mouse_x() const noexcept {
+inline float FLX_MouseDevice::get_mouse_x() const noexcept {
     return _mouse_x;
 }
 
-float FLX_MouseDevice::get_mouse_y() const noexcept {
+inline float FLX_MouseDevice::get_mouse_y() const noexcept {
     return _mouse_y;
 }
