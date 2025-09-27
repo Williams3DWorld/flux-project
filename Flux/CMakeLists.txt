@@ -19,8 +19,8 @@ add_library (flux STATIC
         flx_object.h
         types/flx_integer.h
         types/flx_inheritance.h
-        services/asset/flx_loader.cpp
-        services/asset/flx_loader.h
+        flx_loader.cpp
+        flx_loader.h
         types/flx_path_map.h
 )
 
