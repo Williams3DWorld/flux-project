@@ -16,7 +16,7 @@ struct Binding {
 class FLX_InputMap {
 public:
     FLX_InputMap() = default;
-    ~FLX_InputMap() {}
+    ~FLX_InputMap() = default;
 
     void bind_action(const std::string& action_id, FLX_DeviceType device_type, int code);
     void remove_action(const std::string& action_id);
