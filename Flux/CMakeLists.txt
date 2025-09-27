@@ -9,8 +9,19 @@ add_library (flux STATIC
         flx_instance.h
         types/flx_memory.h
         types/flx_unordered_map.h
-        scene/components/flx_component.h
-        scene/components/flx_component.cpp
+        services/scene/components/flx_component.h
+        services/scene/components/flx_component.cpp
+        flx_cache.cpp
+        flx_cache.h
+        FLX_Resource.cpp
+        FLX_Resource.h
+        flx_object.cpp
+        flx_object.h
+        types/flx_integer.h
+        types/flx_inheritance.h
+        services/asset/flx_loader.cpp
+        services/asset/flx_loader.h
+        types/flx_path_map.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
