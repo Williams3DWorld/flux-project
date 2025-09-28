@@ -2,8 +2,7 @@
 #include <iostream>
 
 #include "./input/flx_input.h"
-#include "input/input_devices/flx_keyboard_device.h"
-#include "input/input_devices/flx_mouse_device.h"
+#include "./input/flx_input_map.h"
 
 FLX_Instance::FLX_Instance(const FLX_InstanceOptions& options) : _options(options) {}
 

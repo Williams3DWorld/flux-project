@@ -14,7 +14,7 @@ public:
     void reset() override;
 
     [[nodiscard]] inline bool is_key_down(FLX_Scancode scancode) const;
-    [[nodiscard]] inline bool is_key_pressed(FLX_Scancode scancode) const;
+    [[nodiscard]] bool is_key_pressed(FLX_Scancode scancode) const;
 private:
     const bool* _keyboard_state = nullptr;
     flx_unordered_map<FLX_Scancode, bool> _key_states;

@@ -5,7 +5,6 @@
 
 #include "./input_devices/flx_device_type.h"
 #include "flx_input.h"
-#include "../types/flx_unordered_map.h"
 #include <string>
 
 struct Binding {
@@ -15,14 +14,13 @@ struct Binding {
 
 class FLX_InputMap {
 public:
-    FLX_InputMap() = default;
-    ~FLX_InputMap() = default;
+    [[nodiscard]] const Binding* get_action_binding(std::string_view action_id) const;
 
     void bind_action(const std::string& action_id, FLX_DeviceType device_type, int code);
     void remove_action(const std::string& action_id);
-    bool is_action_pressed(const std::string& action_id, FLX_Input& input);
+    bool is_action_pressed(std::string_view action_id, FLX_Input& input) const;
 private:
-    flx_unordered_map<std::string, Binding> _action_bindings;
+    flx_unordered_map_string_h<std::string, Binding> _action_bindings;
 };
 
 #endif
