@@ -10,8 +10,9 @@ void FLX_Instance::run() const {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
     const FLX_Window window(_options.window_options);
+
     FLX_Input input;
-    FLX_InputMap input_map(_options.input_options, input);
+    const FLX_InputMap input_map(_options.input_options, input);
 
     bool running = true;
 
@@ -35,7 +36,9 @@ void FLX_Instance::run() const {
 
         input.update();
 
-        // TODO: update stuff in here
+        if (input_map.is_action_pressed("interact")) {
+            std::cout << "interact" << std::endl;
+        }
 
         input.reset();
     }

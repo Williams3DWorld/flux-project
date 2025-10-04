@@ -7,7 +7,7 @@ int main(int argc, char** argv) {
 		}),
 		.input_options = FLX_InputOptions({
 			.action_bindings = {
-				{"interact", {FLX_DeviceType::KEYBOARD, SDL_SCANCODE_E}}
+				{"interact", {KEYBOARD, SDL_SCANCODE_E}}
 			}
 		})
 	});

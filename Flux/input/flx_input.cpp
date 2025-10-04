@@ -18,13 +18,13 @@ void FLX_Input::poll_events(const SDL_Event& event) const {
     }
 }
 
-void FLX_Input::update() {
+void FLX_Input::update() const {
     for (const auto &val: _devices | std::views::values) {
         val->update();
     }
 }
 
-void FLX_Input::reset() {
+void FLX_Input::reset() const {
     for (const auto &val: _devices | std::views::values) {
         val->reset();
     }

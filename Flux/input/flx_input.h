@@ -18,8 +18,8 @@ public:
     const FLX_KeyboardDevice* keyboard_device();
 
     void register_device(FLX_DeviceType device_type, flx_unique<FLX_InputDevice> device);
-    void reset();
-    void update();
+    void reset() const;
+    void update() const;
     void poll_events(const SDL_Event& event) const;
 private:
     flx_unordered_map<FLX_DeviceType, flx_unique<FLX_InputDevice>> _devices;
