@@ -38,7 +38,7 @@ enum class FLX_Scancode
     SDL_SCANCODE_RIGHT = 79,
     SDL_SCANCODE_LEFT = 80,
     SDL_SCANCODE_DOWN = 81,
-    SDL_SCANCODE_UP = 82,
+    SDL_SCANCODE_UP = 82
 };
 
 #endif

@@ -1,6 +1,10 @@
 #include "flx_mouse_device.h"
 #include <iostream>
 
+FLX_MouseDevice::FLX_MouseDevice() {
+    _mouse_button_states.reserve(NUM_MOUSE_BUTTONS);
+}
+
 void FLX_MouseDevice::poll_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN ||
         event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
@@ -11,10 +15,6 @@ void FLX_MouseDevice::poll_events(const SDL_Event& event) {
 
 void FLX_MouseDevice::update() {
     _mouse_state = SDL_GetMouseState(&_mouse_x, &_mouse_y);
-}
-
-void FLX_MouseDevice::reset() {
-    _mouse_button_states.clear();
 }
 
 bool FLX_MouseDevice::is_mouse_button_down(const Uint8 index) const {

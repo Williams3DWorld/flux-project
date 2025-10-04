@@ -4,8 +4,8 @@
 #include <ostream>
 
 FLX_InputMap::FLX_InputMap(const FLX_InputOptions &options, FLX_Input& input) :
-    _input(input),
-    _options(options)
+    _options(options),
+    _input(input)
 {}
 
 const Binding* FLX_InputMap::get_action_binding(const std::string_view action_id) const {

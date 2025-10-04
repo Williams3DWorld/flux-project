@@ -39,8 +39,6 @@ void FLX_Instance::run() const {
         if (input_map.is_action_pressed("interact")) {
             std::cout << "interact" << std::endl;
         }
-
-        input.reset();
     }
 
     window.destroy();

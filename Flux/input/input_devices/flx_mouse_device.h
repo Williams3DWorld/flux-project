@@ -7,9 +7,12 @@
 #include "../../types/flx_integer.h"
 #include "../../types/flx_unordered_map.h"
 
+constexpr int NUM_MOUSE_BUTTONS = 3;
+
 class FLX_MouseDevice final : public FLX_InputDevice {
 public:
-    void reset() override;
+    FLX_MouseDevice();
+
     void update() override;
     void poll_events(const SDL_Event& event) override;
 

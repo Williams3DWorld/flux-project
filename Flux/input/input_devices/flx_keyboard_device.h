@@ -9,9 +9,10 @@
 
 class FLX_KeyboardDevice final : public  FLX_InputDevice {
 public:
+    FLX_KeyboardDevice();
+
     void update() override;
     void poll_events(const SDL_Event& event) override;
-    void reset() override;
 
     [[nodiscard]] inline bool is_key_down(FLX_Scancode scancode) const;
     [[nodiscard]] bool is_key_pressed(FLX_Scancode scancode) const;

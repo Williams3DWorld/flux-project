@@ -24,12 +24,6 @@ void FLX_Input::update() const {
     }
 }
 
-void FLX_Input::reset() const {
-    for (const auto &val: _devices | std::views::values) {
-        val->reset();
-    }
-}
-
 const FLX_MouseDevice* FLX_Input::mouse_device() {
     return dynamic_cast<FLX_MouseDevice*>(_devices[MOUSE].get());
 }

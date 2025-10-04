@@ -1,5 +1,9 @@
 #include "flx_keyboard_device.h"
 
+FLX_KeyboardDevice::FLX_KeyboardDevice() {
+    _key_states.reserve(SDL_SCANCODE_COUNT);
+}
+
 void FLX_KeyboardDevice::poll_events(const SDL_Event& event) {
     if (event.type == SDL_EVENT_KEY_DOWN ||
         event.type == SDL_EVENT_KEY_UP) {
@@ -10,10 +14,6 @@ void FLX_KeyboardDevice::poll_events(const SDL_Event& event) {
 
 void FLX_KeyboardDevice::update() {
     _keyboard_state = SDL_GetKeyboardState(nullptr);
-}
-
-void FLX_KeyboardDevice::reset() {
-    _key_states.clear();
 }
 
 inline bool FLX_KeyboardDevice::is_key_down(FLX_Scancode scancode) const {
