@@ -4,7 +4,8 @@
 #define FLX_ASSET_TYPE_H
 
 enum class FLX_AssetType {
-    Texture
+    Texture,
+    TextureSource
 };
 
 #endif

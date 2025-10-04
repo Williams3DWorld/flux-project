@@ -1,5 +1,5 @@
 #include "flx_cache.h"
-#include "types/flx_memory.h"
+#include "../types/flx_memory.h"
 
 template<typename K, typename V>
 [[nodiscard]] flx_weak<V> FLX_Cache<K, V>::get(const K& identifier) const {

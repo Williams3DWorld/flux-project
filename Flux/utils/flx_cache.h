@@ -3,8 +3,8 @@
 #ifndef FLX_CACHE_H
 #define FLX_CACHE_H
 
-#include "types/flx_memory.h"
-#include "types/flx_unordered_map.h"
+#include "../types/flx_memory.h"
+#include "../types/flx_unordered_map.h"
 
 template<typename K, typename V>
 class FLX_Cache {
