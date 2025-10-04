@@ -19,6 +19,8 @@ void FLX_Instance::run() const {
     while (running) {
         SDL_Event event { 0 };
 
+        input.update();
+
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_EVENT_QUIT:
@@ -33,8 +35,6 @@ void FLX_Instance::run() const {
 
             input.poll_events(event);
         }
-
-        input.update();
 
         if (input_map.is_action_pressed("interact")) {
             std::cout << "interact" << std::endl;

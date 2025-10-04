@@ -1,8 +1,7 @@
 #include "flx_mouse_device.h"
-#include <iostream>
 
 FLX_MouseDevice::FLX_MouseDevice() {
-    _mouse_button_states.reserve(NUM_MOUSE_BUTTONS);
+    _mouse_button_states.fill(false);
 }
 
 void FLX_MouseDevice::poll_events(const SDL_Event& event) {
@@ -14,16 +13,11 @@ void FLX_MouseDevice::poll_events(const SDL_Event& event) {
 }
 
 void FLX_MouseDevice::update() {
-    _mouse_state = SDL_GetMouseState(&_mouse_x, &_mouse_y);
+    SDL_GetMouseState(&_mouse_x, &_mouse_y);
 }
 
-bool FLX_MouseDevice::is_mouse_button_down(const Uint8 index) const {
-    return (_mouse_state & SDL_BUTTON_MASK(index));
-}
-
-bool FLX_MouseDevice::is_mouse_button_pressed(const Uint8 index) const {
-    const auto it = _mouse_button_states.find(index);
-    return it != _mouse_button_states.end() && it->second == true;
+bool FLX_MouseDevice::is_mouse_button_pressed(const ui8 index) const {
+    return _mouse_button_states[index];
 }
 
 inline float FLX_MouseDevice::get_mouse_x() const noexcept {
