@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef FLX_CHAR_H
-#define FLX_CHAR_H
+#ifndef FLX_STRING_H
+#define FLX_STRING_H
 
 #include <string>
 
