@@ -11,8 +11,8 @@ struct FLX_ResourceConfig {
     const flx_string path;
 };
 
-template <typename T>
-concept FLX_ResourceConfigDerived = flx_is_base_of<FLX_ResourceConfig, T>;
+template <typename FLX_ObjectConfigDerived>
+concept FLX_ResourceConfigDerived = flx_is_base_of<FLX_ResourceConfig, FLX_ObjectConfigDerived>;
 
 template <typename FLX_ResourceConfigDerived>
 class FLX_Resource : protected FLX_Object<FLX_ResourceConfigDerived> {
