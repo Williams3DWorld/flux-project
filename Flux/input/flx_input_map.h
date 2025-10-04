@@ -12,16 +12,18 @@ struct Binding {
     int code;
 };
 
+struct FLX_InputOptions {
+    flx_unordered_map_string_h<std::string, Binding> action_bindings;
+};
+
 class FLX_InputMap {
 public:
-    explicit FLX_InputMap(FLX_Input& input);
+    explicit FLX_InputMap(const FLX_InputOptions &options, FLX_Input& input);
 
     [[nodiscard]] const Binding* get_action_binding(std::string_view action_id) const;
-
-    void bind_action(const std::string& action_id, FLX_DeviceType device_type, int code);
     [[nodiscard]] bool is_action_pressed(std::string_view action_id) const;
 private:
-    flx_unordered_map_string_h<std::string, Binding> _action_bindings;
+    FLX_InputOptions _options;
     FLX_Input& _input;
 };
 

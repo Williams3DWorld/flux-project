@@ -10,13 +10,13 @@ void FLX_Instance::run() const {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
     const FLX_Window window(_options.window_options);
+    FLX_Input input;
+    FLX_InputMap input_map(_options.input_options, input);
 
     bool running = true;
 
-    auto* input = new FLX_Input();
-
     while (running) {
-        SDL_Event event{ 0 };
+        SDL_Event event { 0 };
 
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
@@ -30,16 +30,14 @@ void FLX_Instance::run() const {
                 }
             }
 
-            input->poll_events(event);
+            input.poll_events(event);
         }
 
-        input->update();
+        input.update();
 
-        /**
-        * CHECK INPUT HERE!!!!
-        */
+        // TODO: update stuff in here
 
-        input->reset();
+        input.reset();
     }
 
     window.destroy();

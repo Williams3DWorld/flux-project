@@ -3,18 +3,14 @@
 #include <iostream>
 #include <ostream>
 
-FLX_InputMap::FLX_InputMap(FLX_Input& input) : _input(input) {}
-
-void FLX_InputMap::bind_action(const std::string& action_id, FLX_DeviceType device_type, int code) {
-    _action_bindings[action_id] = {
-        device_type,
-        code,
-    };
-}
+FLX_InputMap::FLX_InputMap(const FLX_InputOptions &options, FLX_Input& input) :
+    _input(input),
+    _options(options)
+{}
 
 const Binding* FLX_InputMap::get_action_binding(const std::string_view action_id) const {
-    const auto it = _action_bindings.find(action_id);
-    if (it != _action_bindings.end()) {
+    const auto it = _options.action_bindings.find(action_id);
+    if (it != _options.action_bindings.end()) {
         return &it->second;
     }
 
