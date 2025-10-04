@@ -3,7 +3,7 @@
 #ifndef FLX_TEXTURE_SOURCE_H
 #define FLX_TEXTURE_SOURCE_H
 
-#include "flx_asset.h"
+#include "../flx_asset.h"
 #include "SDL3/SDL_render.h"
 
 struct FLX_TextureSourceConfig : FLX_AssetConfig {

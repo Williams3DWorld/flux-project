@@ -3,7 +3,7 @@
 #ifndef FLX_ASSET_MANAGER_H
 #define FLX_ASSET_MANAGER_H
 
-#include "flx_texture_source.h"
+#include "assets/flx_texture_source.h"
 #include "types/flx_asset_store.h"
 
 class FLX_AssetManager {

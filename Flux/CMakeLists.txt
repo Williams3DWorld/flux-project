@@ -23,14 +23,16 @@ add_library (flux STATIC
         utils/flx_loader.h
         services/asset_manager/flx_asset_manager.cpp
         services/asset_manager/flx_asset_manager.h
-        services/asset_manager/flx_texture_source.cpp
-        services/asset_manager/flx_texture_source.h
+        services/asset_manager/assets/flx_texture_source.cpp
+        services/asset_manager/assets/flx_texture_source.h
         services/asset_manager/types/flx_asset_type.h
         types/flx_string.h
         services/asset_manager/flx_asset.cpp
         services/asset_manager/flx_asset.h
         services/asset_manager/types/flx_asset_store.h
         types/flx_string_view.h
+        services/asset_manager/flx_asset_loader.cpp
+        services/asset_manager/flx_asset_loader.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

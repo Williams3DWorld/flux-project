@@ -7,12 +7,12 @@
 #include "types/flx_inheritance.h"
 #include "types/flx_string.h"
 
-struct FLX_ResourceConfig {
+struct FLX_ResourceConfig : FLX_ObjectConfig {
     const flx_string path;
 };
 
-template <typename FLX_ObjectConfigDerived>
-concept FLX_ResourceConfigDerived = flx_is_base_of<FLX_ResourceConfig, FLX_ObjectConfigDerived>;
+template <typename T>
+concept FLX_ResourceConfigDerived = flx_is_base_of<FLX_ResourceConfig, T>;
 
 template <typename FLX_ResourceConfigDerived>
 class FLX_Resource : protected FLX_Object<FLX_ResourceConfigDerived> {

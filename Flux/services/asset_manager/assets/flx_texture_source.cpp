@@ -1,5 +1,5 @@
 #include "flx_texture_source.h"
-#include "flx_resource.h"
+
 #include "types/flx_memory.h"
 
 FLX_TextureSource::FLX_TextureSource(FLX_TextureSourceConfig&& config) :

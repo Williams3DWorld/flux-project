@@ -9,7 +9,7 @@
 using FLX_AssetConfig = FLX_ResourceConfig;
 
 template <typename T>
-concept FLX_AssetConfigDerived = FLX_ResourceConfigDerived<T>;
+concept FLX_AssetConfigDerived = flx_is_base_of<FLX_AssetConfig, T>;
 
 template <typename FLX_AssetConfigDerived>
 class FLX_Asset : protected FLX_Resource<FLX_AssetConfigDerived> {

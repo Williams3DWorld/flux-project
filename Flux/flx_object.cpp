@@ -3,7 +3,7 @@
 
 template <typename FLX_ObjectConfigDerived>
 FLX_Object<FLX_ObjectConfigDerived>::FLX_Object(FLX_ObjectConfigDerived&& config) :
-    _config(flx_move(config)) {}
+    _config(flx_forward<FLX_ObjectConfigDerived>(config)) {}
 
 template <typename FLX_ObjectConfigDerived>
 [[nodiscard]] ui16 FLX_Object<FLX_ObjectConfigDerived>::uuid() const noexcept {
