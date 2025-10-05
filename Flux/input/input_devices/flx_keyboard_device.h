@@ -16,8 +16,8 @@ public:
 
     [[nodiscard]] bool is_key_pressed(FLX_Scancode scancode) const;
 private:
-    std::array<bool, SDL_SCANCODE_COUNT> _previous_key_states;
-    std::array<bool, SDL_SCANCODE_COUNT> _key_states;
+    std::array<bool, SDL_SCANCODE_COUNT> _previous_key_states {};
+    std::array<bool, SDL_SCANCODE_COUNT> _key_states {};
 };
 
 #endif

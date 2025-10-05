@@ -1,9 +1,8 @@
 #include "flx_input_map.h"
-
-#include <iostream>
+#include "flx_input_manager.h"
 #include <ostream>
 
-FLX_InputMap::FLX_InputMap(const FLX_InputOptions &options, FLX_Input& input) :
+FLX_InputMap::FLX_InputMap(const FLX_InputOptions &options, FLX_InputManager& input) :
     _options(options),
     _input(input)
 {}

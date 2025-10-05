@@ -19,6 +19,6 @@ void FLX_KeyboardDevice::update() {
 }
 
 bool FLX_KeyboardDevice::is_key_pressed(FLX_Scancode scancode) const {
-    const size_t scancode_idx = static_cast<size_t>(scancode);
+    const auto scancode_idx = static_cast<size_t>(scancode);
     return _key_states[scancode_idx] && !_previous_key_states[scancode_idx];
 }

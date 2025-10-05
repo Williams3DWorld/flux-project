@@ -22,7 +22,7 @@ public:
     [[nodiscard]] bool is_mouse_button_pressed(ui8 index) const;
 private:
     float _mouse_x = 0, _mouse_y = 0;
-    std::array<bool, NUM_MOUSE_BUTTONS> _mouse_button_states;
+    std::array<bool, NUM_MOUSE_BUTTONS> _mouse_button_states {};
 };
 
 #endif
