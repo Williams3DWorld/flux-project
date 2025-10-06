@@ -4,8 +4,9 @@
 #define FLX_WINDOW_H
 
 #include <SDL3/SDL.h>
+#include "flx_object.h"
 
-struct FLX_WindowOptions {
+struct FLX_WindowConfig : FLX_ObjectConfig {
     const char* title = "Flux";
     int width = 800;
     int height = 600;
@@ -13,15 +14,13 @@ struct FLX_WindowOptions {
     bool resizable = false;
 };
 
-class FLX_Window {
+class FLX_Window final : public FLX_Object<FLX_WindowConfig> {
 public:
-    explicit FLX_Window(const FLX_WindowOptions &options);
-    ~FLX_Window();
-
-    void destroy() const;
+    explicit FLX_Window(FLX_WindowConfig&& config);
+    ~FLX_Window() override;
 
 private:
-    SDL_Window* _sdl_window;
+    SDL_Window* _window;
 };
 
 #endif

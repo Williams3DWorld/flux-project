@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef FLX_STRING_VIEW_H
 #define FLX_STRING_VIEW_H
 

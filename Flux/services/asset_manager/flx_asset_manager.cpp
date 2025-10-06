@@ -1,5 +1,8 @@
 #include "flx_asset_manager.h"
 
-[[nodiscard]] flx_weak<FLX_TextureSource> FLX_AssetManager::texture_source(const flx_string& identifier) const {
-    return _texture_sources.get(identifier);
+FLX_AssetManager::FLX_AssetManager(FLX_AssetManagerConfig&& config) :
+    FLX_Service(std::move(config)) {}
+
+FLX_AssetManager::~FLX_AssetManager() {
+    _texture_sources.data()->clear();
 }

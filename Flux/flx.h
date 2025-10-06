@@ -5,6 +5,6 @@
 
 #include "flx_instance.h"
 
-FLX_Instance FLX_CreateInstance(const FLX_InstanceOptions &options);
+FLX_Instance FLX_CreateInstance(FLX_InstanceConfig&& config);
 
 #endif

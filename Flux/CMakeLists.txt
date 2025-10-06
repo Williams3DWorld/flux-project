@@ -7,32 +7,29 @@ add_library (flux STATIC
         flx_window.h
         flx_instance.cpp
         flx_instance.h
-        types/flx_memory.h
-        types/flx_unordered_map.h
+        core/flx_memory.h
+        core/flx_unordered_map.h
         services/scene_manager/components/flx_component.h
-        services/scene_manager/components/flx_component.cpp
-        utils/flx_cache.cpp
         utils/flx_cache.h
-        FLX_Resource.cpp
         FLX_Resource.h
-        flx_object.cpp
         flx_object.h
-        types/flx_integer.h
-        types/flx_inheritance.h
-        utils/flx_loader.cpp
+        core/flx_integer.h
+        core/flx_inheritance.h
         utils/flx_loader.h
         services/asset_manager/flx_asset_manager.cpp
         services/asset_manager/flx_asset_manager.h
         services/asset_manager/assets/flx_texture_source.cpp
         services/asset_manager/assets/flx_texture_source.h
         services/asset_manager/types/flx_asset_type.h
-        types/flx_string.h
-        services/asset_manager/flx_asset.cpp
+        core/flx_string.h
         services/asset_manager/flx_asset.h
         services/asset_manager/types/flx_asset_store.h
-        types/flx_string_view.h
-        services/asset_manager/flx_asset_loader.cpp
-        services/asset_manager/flx_asset_loader.h
+        core/flx_string_view.h
+        services/asset_manager/loaders/flx_texture_loader.cpp
+        services/asset_manager/loaders/flx_texture_loader.h
+        flx_service.h
+        flx_context.h
+        core/flx_ranges.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

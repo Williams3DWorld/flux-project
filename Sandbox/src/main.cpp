@@ -1,8 +1,8 @@
 ﻿#include <flx.h>
 
 int main(int argc, char** argv) {
-	const FLX_Instance instance = FLX_CreateInstance({
-		.window_options = FLX_WindowOptions({
+	FLX_Instance instance = FLX_CreateInstance({
+		.window = FLX_WindowConfig({
 			.title = "Sandbox"
 		})
 	});
