@@ -5,6 +5,7 @@
 
 #include "flx_window.h"
 #include "services/asset_manager/flx_asset_manager.h"
+#include "services/render_manager/flx_render_manager.h"
 
 struct FLX_InstanceConfig : FLX_ObjectConfig {
     FLX_WindowConfig&& window;
@@ -21,6 +22,7 @@ private:
     std::shared_ptr<FLX_Window> _window;
 
     std::shared_ptr<FLX_AssetManager> _asset_manager;
+    std::shared_ptr<FLX_RenderManager> _render_manager;
 };
 
 #endif
