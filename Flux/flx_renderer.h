@@ -17,7 +17,7 @@ public:
     explicit FLX_Renderer(FLX_RendererConfig&& config);
     ~FLX_Renderer() override;
 
-    [[nodiscard]] SDL_Renderer* renderer() noexcept;
+    [[nodiscard]] SDL_Renderer* renderer() const noexcept;
 
 private:
     SDL_Renderer* _renderer;

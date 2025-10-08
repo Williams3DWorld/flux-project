@@ -10,6 +10,6 @@ FLX_Renderer::~FLX_Renderer() {
     SDL_DestroyRenderer(_renderer);
 }
 
-[[nodiscard]] SDL_Renderer* FLX_Renderer::renderer() noexcept {
+[[nodiscard]] SDL_Renderer* FLX_Renderer::renderer() const noexcept {
     return _renderer;
 }
