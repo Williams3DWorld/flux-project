@@ -1,22 +1,22 @@
 #include "flx_instance.h"
 
-#include <iostream>
-
 #include "flx_context.h"
+#include "flx_renderer.h"
 
 FLX_Instance::FLX_Instance(FLX_InstanceConfig&& config) :
-    FLX_Object(std::forward<FLX_InstanceConfig>(config)) {}
+    FLX_Object(std::move(config)) {}
 
 void FLX_Instance::run() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
-    FLX_Window window(std::forward<FLX_WindowConfig>(_config.window));
+    // Create the window
+    const flx_shared<FLX_Window> window = std::make_shared<FLX_Window>(std::move(_config.window));
 
     // Create the context
-    const flx_shared<FLX_Context> ctx = flx_make_shared<FLX_Context>();
+    const flx_shared<FLX_Context> ctx = std::make_shared<FLX_Context>();
 
     // Create the services
-    _asset_manager = flx_make_shared<FLX_AssetManager>(FLX_AssetManager({}));
+    _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));
 
     // Assign context's pointers
     ctx.get()->asset_manager = _asset_manager.get();

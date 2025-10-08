@@ -19,6 +19,8 @@ public:
     explicit FLX_Window(FLX_WindowConfig&& config);
     ~FLX_Window() override;
 
+    [[nodiscard]] SDL_Window* window() const noexcept;
+
 private:
     SDL_Window* _window;
 };

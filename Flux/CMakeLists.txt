@@ -30,6 +30,8 @@ add_library (flux STATIC
         flx_service.h
         flx_context.h
         core/flx_ranges.h
+        flx_renderer.cpp
+        flx_renderer.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
