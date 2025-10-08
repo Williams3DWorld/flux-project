@@ -11,7 +11,7 @@ struct FLX_Context;
 using FLX_ServiceConfig = FLX_ObjectConfig;
 
 template<typename T>
-concept FLX_ServiceConfigDerived = flx_is_base_of<FLX_ServiceConfig, T>;
+concept FLX_ServiceConfigDerived = std::is_base_of_v<FLX_ServiceConfig, T>;
 
 template<typename FLX_ServiceConfigDerived>
 class FLX_Service : public FLX_Object<FLX_ServiceConfigDerived> {

@@ -1,5 +1,4 @@
 #include "flx_window.h"
-#include "core/flx_memory.h"
 
 FLX_Window::FLX_Window(FLX_WindowConfig&& config) :
     FLX_Object(std::move(config)) {

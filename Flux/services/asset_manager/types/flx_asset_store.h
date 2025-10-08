@@ -6,6 +6,6 @@
 #include "utils/flx_cache.h"
 
 template<typename T>
-using flx_asset_store = FLX_Cache<flx_string, T>;
+using flx_asset_store = FLX_Cache<std::string, T>;
 
 #endif

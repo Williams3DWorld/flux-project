@@ -1,5 +1,4 @@
 #include "flx_instance.h"
-
 #include "flx_context.h"
 #include "flx_renderer.h"
 
@@ -10,10 +9,10 @@ void FLX_Instance::run() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
     // Create the window
-    const flx_shared<FLX_Window> window = std::make_shared<FLX_Window>(std::move(_config.window));
+    const std::shared_ptr<FLX_Window> window = std::make_shared<FLX_Window>(std::move(_config.window));
 
     // Create the context
-    const flx_shared<FLX_Context> ctx = std::make_shared<FLX_Context>();
+    const std::shared_ptr<FLX_Context> ctx = std::make_shared<FLX_Context>();
 
     // Create the services
     _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));

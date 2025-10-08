@@ -4,7 +4,6 @@
 #define FLX_INSTANCE_H
 
 #include "flx_window.h"
-#include "core/flx_memory.h"
 #include "services/asset_manager/flx_asset_manager.h"
 
 struct FLX_InstanceConfig : FLX_ObjectConfig {
@@ -19,9 +18,9 @@ public:
     void run();
 
 private:
-    flx_shared<FLX_Window> _window;
+    std::shared_ptr<FLX_Window> _window;
 
-    flx_shared<FLX_AssetManager> _asset_manager;
+    std::shared_ptr<FLX_AssetManager> _asset_manager;
 };
 
 #endif

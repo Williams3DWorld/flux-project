@@ -3,8 +3,8 @@
 #ifndef FLX_CACHE_H
 #define FLX_CACHE_H
 
-#include "core/flx_memory.h"
-#include "core/flx_unordered_map.h"
+#include <memory>
+#include <unordered_map>
 
 template<typename K, typename V>
 class FLX_Cache {
@@ -12,7 +12,7 @@ public:
     explicit FLX_Cache();
     ~FLX_Cache() = default;
 
-    [[nodiscard]] flx_unordered_map<K, flx_shared<V>>* data() noexcept;
+    [[nodiscard]] std::unordered_map<K, std::shared_ptr<V>>* data() noexcept;
 
     [[nodiscard]] V* get(const K& identifier) const;
 
@@ -20,15 +20,15 @@ public:
     void set(K identifier, Args&&... args);
 
 private:
-    flx_shared<flx_unordered_map<K, flx_shared<V>>> _data;
+    std::shared_ptr<std::unordered_map<K, std::shared_ptr<V>>> _data;
 };
 
 template<typename K, typename V>
 FLX_Cache<K, V>::FLX_Cache() :
-    _data(flx_make_shared<flx_unordered_map<K, flx_shared<V>>>()) {}
+    _data(std::make_shared<std::unordered_map<K, std::shared_ptr<V>>>()) {}
 
 template<typename K, typename V>
-[[nodiscard]] flx_unordered_map<K, flx_shared<V>>* FLX_Cache<K, V>::data() noexcept {
+[[nodiscard]] std::unordered_map<K, std::shared_ptr<V>>* FLX_Cache<K, V>::data() noexcept {
     return _data.get();
 }
 

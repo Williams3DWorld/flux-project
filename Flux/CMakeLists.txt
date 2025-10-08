@@ -7,29 +7,21 @@ add_library (flux STATIC
         flx_window.h
         flx_instance.cpp
         flx_instance.h
-        core/flx_memory.h
-        core/flx_unordered_map.h
         services/scene_manager/components/flx_component.h
         utils/flx_cache.h
         FLX_Resource.h
         flx_object.h
-        core/flx_integer.h
-        core/flx_inheritance.h
         utils/flx_loader.h
         services/asset_manager/flx_asset_manager.cpp
         services/asset_manager/flx_asset_manager.h
         services/asset_manager/assets/flx_texture_source.cpp
         services/asset_manager/assets/flx_texture_source.h
-        services/asset_manager/types/flx_asset_type.h
-        core/flx_string.h
-        services/asset_manager/flx_asset.h
+        types/flx_resource_type.h
         services/asset_manager/types/flx_asset_store.h
-        core/flx_string_view.h
         services/asset_manager/loaders/flx_texture_loader.cpp
         services/asset_manager/loaders/flx_texture_loader.h
         flx_service.h
         flx_context.h
-        core/flx_ranges.h
         flx_renderer.cpp
         flx_renderer.h
 )
