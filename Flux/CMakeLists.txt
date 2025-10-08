@@ -35,9 +35,6 @@ add_library (flux STATIC
         input/input_devices/flx_device_type.h
         input/flx_input_map.cpp
         input/flx_input_map.h
-        input/flx_input_listener.cpp
-        input/flx_input_listener.h
-        input/flx_input_listener.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
