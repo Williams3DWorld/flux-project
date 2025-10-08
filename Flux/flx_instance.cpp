@@ -18,10 +18,10 @@ void FLX_Instance::run() {
     _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));
 
     // Assign context's pointers
-    ctx.get()->asset_manager = _asset_manager.get();
+    ctx->asset_manager = _asset_manager.get();
 
     // Inject the context to services
-    _asset_manager.get()->inject(ctx.get());
+    _asset_manager->inject(ctx.get());
 
     bool running = true;
 
