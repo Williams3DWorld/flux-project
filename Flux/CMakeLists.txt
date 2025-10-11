@@ -7,34 +7,25 @@ add_library (flux STATIC
         flx_window.h
         flx_instance.cpp
         flx_instance.h
-        types/flx_memory.h
-        types/flx_unordered_map.h
-        services/scene/components/flx_component.h
-        services/scene/components/flx_component.cpp
-        flx_cache.cpp
-        flx_cache.h
-        FLX_Resource.cpp
+        services/scene_manager/components/flx_component.h
+        utils/flx_cache.h
         FLX_Resource.h
-        flx_object.cpp
         flx_object.h
-        types/flx_integer.h
-        types/flx_inheritance.h
-        flx_loader.cpp
-        flx_loader.h
-        types/flx_path_map.h
-        input/flx_input_manager.h
-        input/flx_input_manager.cpp
-        input/input_devices/flx_input_device.h
-        input/input_devices/flx_mouse_device.cpp
-        input/input_devices/flx_mouse_device.h
-        input/input_devices/flx_keyboard_device.cpp
-        input/input_devices/flx_keyboard_device.h
-        types/flx_vector.h
-        input/input_devices/flx_scancode.h
-        input/input_devices/flx_scancode.h
-        input/input_devices/flx_device_type.h
-        input/flx_input_map.cpp
-        input/flx_input_map.h
+        utils/flx_loader.h
+        services/asset_manager/flx_asset_manager.cpp
+        services/asset_manager/flx_asset_manager.h
+        services/asset_manager/assets/flx_texture_source.cpp
+        services/asset_manager/assets/flx_texture_source.h
+        types/flx_resource_type.h
+        services/asset_manager/types/flx_asset_store.h
+        services/asset_manager/loaders/flx_texture_loader.cpp
+        services/asset_manager/loaders/flx_texture_loader.h
+        flx_service.h
+        flx_context.h
+        flx_renderer.cpp
+        flx_renderer.h
+        services/render_manager/flx_render_manager.cpp
+        services/render_manager/flx_render_manager.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

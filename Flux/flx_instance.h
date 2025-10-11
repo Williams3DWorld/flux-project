@@ -4,20 +4,25 @@
 #define FLX_INSTANCE_H
 
 #include "flx_window.h"
-#include "input/flx_input_map.h"
+#include "services/asset_manager/flx_asset_manager.h"
+#include "services/render_manager/flx_render_manager.h"
 
-struct FLX_InstanceOptions {
-    FLX_WindowOptions window_options;
-    FLX_InputOptions input_options;
+struct FLX_InstanceConfig : FLX_ObjectConfig {
+    FLX_WindowConfig&& window;
 };
 
-class FLX_Instance {
+class FLX_Instance final : public FLX_Object<FLX_InstanceConfig> {
 public:
-    explicit FLX_Instance(const FLX_InstanceOptions& options);
+    explicit FLX_Instance(FLX_InstanceConfig&& config);
+    ~FLX_Instance() override = default;
 
-    void run() const;
+    void run();
+
 private:
-    FLX_InstanceOptions _options;
+    std::shared_ptr<FLX_Window> _window;
+
+    std::shared_ptr<FLX_AssetManager> _asset_manager;
+    std::shared_ptr<FLX_RenderManager> _render_manager;
 };
 
 #endif
