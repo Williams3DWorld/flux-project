@@ -1,11 +1,29 @@
 #include "flx_instance.h"
+#include "flx_context.h"
 
-FLX_Instance::FLX_Instance(const FLX_InstanceOptions& options) : _options(options) {}
+FLX_Instance::FLX_Instance(FLX_InstanceConfig&& config) :
+    FLX_Object(std::move(config)) {}
 
-void FLX_Instance::run() const {
+void FLX_Instance::run() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
-    const FLX_Window window(_options.window_options);
+    // Create window
+    const std::shared_ptr<FLX_Window> window = std::make_shared<FLX_Window>(std::move(_config.window));
+
+    // Create context
+    const std::shared_ptr<FLX_Context> ctx = std::make_shared<FLX_Context>();
+
+    // Create services
+    _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));
+    _render_manager = std::make_shared<FLX_RenderManager>(FLX_RenderManager({.window = window.get()}));
+
+    // Assign context pointers
+    ctx->asset_manager = _asset_manager.get();
+    ctx->render_manager = _render_manager.get();
+
+    // Inject context
+    _asset_manager->inject(ctx.get());
+    _render_manager->inject(ctx.get());
 
     bool running = true;
 
@@ -25,6 +43,4 @@ void FLX_Instance::run() const {
             }
         }
     }
-
-    window.destroy();
 }

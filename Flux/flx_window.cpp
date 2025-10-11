@@ -1,24 +1,23 @@
 #include "flx_window.h"
 
-FLX_Window::FLX_Window(const FLX_WindowOptions &options) {
+FLX_Window::FLX_Window(FLX_WindowConfig&& config) :
+    FLX_Object(std::move(config)) {
     SDL_WindowFlags flags = SDL_WINDOW_OPENGL;
 
-    if (options.fullscreen) {
+    if (config.fullscreen) {
         flags |= SDL_WINDOW_FULLSCREEN;
     }
-    if (options.resizable) {
+    if (config.resizable) {
         flags |= SDL_WINDOW_RESIZABLE;
     }
 
-    _sdl_window = SDL_CreateWindow(options.title, options.width, options.height, flags);
+    _window = SDL_CreateWindow(config.title, config.width, config.height, flags);
 }
 
 FLX_Window::~FLX_Window() {
-    if (_sdl_window) {
-        destroy();
-    }
+    SDL_DestroyWindow(_window);
 }
 
-void FLX_Window::destroy() const {
-    SDL_DestroyWindow(_sdl_window);
+[[nodiscard]] SDL_Window *FLX_Window::window() const noexcept {
+    return _window;
 }
