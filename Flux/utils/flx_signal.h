@@ -17,7 +17,7 @@ struct FLX_SignalCallback {
 template<typename... Args>
 class FLX_Signal {
 public:
-    uint8_t connect(std::function<void(Args...)> callback) {
+    uint8_t add(std::function<void(Args...)> callback) {
         _next_identifier += 1;
         _signal_callbacks.push_back({
             .identifier = _next_identifier,
@@ -26,7 +26,7 @@ public:
         return _next_identifier;
     }
 
-    void disconnect(uint8_t existing_identifier) {
+    void remove(uint8_t existing_identifier) {
         _signal_callbacks.erase(
             std::remove_if(
                 _signal_callbacks.begin(),
