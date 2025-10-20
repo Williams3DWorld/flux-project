@@ -1,6 +1,5 @@
 #include "flx_instance.h"
 #include "flx_context.h"
-#include "utils/flx_signal.h"
 
 FLX_Instance::FLX_Instance(FLX_InstanceConfig&& config) :
     FLX_Object(std::move(config)) {}
@@ -26,18 +25,10 @@ void FLX_Instance::run() {
     _asset_manager->inject(ctx.get());
     _render_manager->inject(ctx.get());
 
-    FLX_Signal<int> on_quit;
-
-    on_quit.add([](int x) {
-        std::cout << x << std::endl;
-    });
-
     bool running = true;
 
     while (running) {
         SDL_Event event{ 0 };
-
-        on_quit.emit(5);
 
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
