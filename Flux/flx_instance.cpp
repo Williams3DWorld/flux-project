@@ -26,10 +26,10 @@ void FLX_Instance::run() {
     _asset_manager->inject(ctx.get());
     _render_manager->inject(ctx.get());
 
-    FLX_Signal<int, std::string> on_quit;
+    FLX_Signal<int> on_quit;
 
-    on_quit.connect([](int x, std::string s) {
-        std::cout << x << " " << s << std::endl;
+    on_quit.add([](int x) {
+        std::cout << x << std::endl;
     });
 
     bool running = true;
@@ -37,11 +37,12 @@ void FLX_Instance::run() {
     while (running) {
         SDL_Event event{ 0 };
 
+        on_quit.emit(5);
+
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_EVENT_QUIT:
                 {
-                    on_quit.emit(5, "Hello World!");
                     running = false;
                     break;
                 }
