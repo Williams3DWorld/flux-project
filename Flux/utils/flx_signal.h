@@ -3,7 +3,6 @@
 #ifndef FLX_SIGNAL_H
 #define FLX_SIGNAL_H
 
-#include <iostream>
 #include <functional>
 #include <algorithm>
 #include <vector>
