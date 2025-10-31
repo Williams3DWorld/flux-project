@@ -26,6 +26,7 @@ add_library (flux STATIC
         flx_renderer.h
         services/render_manager/flx_render_manager.cpp
         services/render_manager/flx_render_manager.h
+        utils/flx_signal.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
