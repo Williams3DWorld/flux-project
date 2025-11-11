@@ -37,7 +37,7 @@ void FLX_Instance::run() {
     std::cout << "Current working dir: " << SDL_GetBasePath() << std::endl;
 
     // SDL mixer test ////////////////
-    SDL_AudioDeviceID dev = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
+    const SDL_AudioDeviceID dev = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
     if (!dev) {
         std::cerr << "SDL_OpenAudioDevice failed: " << SDL_GetError() << "\n";
     }
