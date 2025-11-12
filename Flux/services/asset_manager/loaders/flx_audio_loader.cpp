@@ -17,6 +17,8 @@ FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config) : FLX_Loader(st
     if (!_audio_mixer) {
         std::cerr << "Error creating mixer: " << SDL_GetError() << "\n";
     }
+
+    create_track_pool(10);
 }
 
 MIX_Audio* FLX_AudioLoader::load(std::string_view path) {
@@ -25,6 +27,13 @@ MIX_Audio* FLX_AudioLoader::load(std::string_view path) {
         std::cerr << "Error loading sound: " << SDL_GetError() << "\n";
         return nullptr;
     }
+
+    MIX_Track* track = get_free_track();
+    if (!MIX_SetTrackAudio(track, sound)) {
+        std::cerr << "MIX_SetTrackAudio failed: " << SDL_GetError() << "\n";
+    }
+
+    _used_tracks_pool.emplace_back(track);
 
     return sound;
 }

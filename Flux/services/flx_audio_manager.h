@@ -13,9 +13,12 @@ struct FLX_AudioManagerConfig : FLX_ServiceConfig {};
 class FLX_AudioManager final : public FLX_Service<FLX_AudioManagerConfig> {
 public:
     explicit FLX_AudioManager(FLX_AudioManagerConfig&& config);
-    ~FLX_AudioManager() override;
+    ~FLX_AudioManager() override {}
 
     void play_sound(const std::string& sound_id);
+    void pause_sound(const std::string& sound_id);
+    void resume_sound(const std::string& sound_id);
+    void mute_sounds(bool val);
 private:
 };
 
