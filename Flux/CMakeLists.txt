@@ -30,6 +30,8 @@ add_library (flux STATIC
         services/audio_manager/flx_audio_manager.h
         services/asset_manager/loaders/flx_audio_loader.cpp
         services/asset_manager/loaders/flx_audio_loader.h
+        services/asset_manager/assets/flx_audio_source.cpp
+        services/asset_manager/assets/flx_audio_source.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

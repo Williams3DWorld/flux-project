@@ -11,6 +11,8 @@
 
 using FLX_AudioLoaderConfig = FLX_LoaderConfig;
 
+constexpr int MAX_NUM_TRACKS = 10;
+
 struct FLX_AudioSource {
     std::string identifier;
     MIX_Audio* audio;

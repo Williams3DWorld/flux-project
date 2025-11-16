@@ -18,7 +18,7 @@ FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config) : FLX_Loader(st
         std::cerr << "Error creating mixer: " << SDL_GetError() << "\n";
     }
 
-    create_track_pool(10);
+    create_track_pool(MAX_NUM_TRACKS);
 }
 
 MIX_Audio* FLX_AudioLoader::load(std::string_view path) {
