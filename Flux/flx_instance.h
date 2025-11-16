@@ -4,6 +4,7 @@
 #define FLX_INSTANCE_H
 
 #include "flx_window.h"
+#include "services/input_manager/flx_input_manager.h"
 #include "services/asset_manager/flx_asset_manager.h"
 #include "services/render_manager/flx_render_manager.h"
 
@@ -21,6 +22,7 @@ public:
 private:
     std::shared_ptr<FLX_Window> _window;
 
+    std::shared_ptr<FLX_InputManager> _input_manager;
     std::shared_ptr<FLX_AssetManager> _asset_manager;
     std::shared_ptr<FLX_RenderManager> _render_manager;
 };

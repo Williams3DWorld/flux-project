@@ -16,7 +16,7 @@ concept FLX_ServiceConfigDerived = std::is_base_of_v<FLX_ServiceConfig, T>;
 template<typename FLX_ServiceConfigDerived>
 class FLX_Service : public FLX_Object<FLX_ServiceConfigDerived> {
 public:
-    explicit  FLX_Service(FLX_ServiceConfigDerived&& config);
+    explicit FLX_Service(FLX_ServiceConfigDerived&& config);
     ~FLX_Service() override = default;
 
     void inject(FLX_Context* context) noexcept;
