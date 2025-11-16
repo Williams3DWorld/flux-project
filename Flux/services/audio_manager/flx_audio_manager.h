@@ -5,7 +5,7 @@
 
 #include <string>
 #include <vector>
-#include "../flx_service.h"
+#include "../../flx_service.h"
 #include "SDL3_mixer/SDL_mixer.h"
 
 struct FLX_AudioManagerConfig : FLX_ServiceConfig {};
