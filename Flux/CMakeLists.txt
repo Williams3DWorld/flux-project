@@ -39,6 +39,8 @@ add_library (flux STATIC
         types/flx_event_types.h
         services/input_manager/devices/flx_input_device.cpp
         services/input_manager/types/flx_input_action.h
+        services/scene_manager/flx_scene_manager.cpp
+        services/scene_manager/flx_scene_manager.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
