@@ -7,7 +7,7 @@
 FLX_TextureLoader::FLX_TextureLoader(FLX_TextureLoaderConfig&& config) :
     FLX_Loader(std::move(config)) {}
 
-SDL_Texture* FLX_TextureLoader::load(std::string_view path) {
+SDL_Texture* FLX_TextureLoader::load(const std::string_view path) {
     const FLX_RenderManager* render_manager = _ctx->render_manager;
 
     SDL_Renderer* renderer = render_manager->renderer()->renderer();
