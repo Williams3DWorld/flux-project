@@ -5,7 +5,7 @@
 
 #include <string>
 #include "flx_object.h"
-#include "types/flx_resource_type.h"
+#include "types/flx_resource_types.h"
 
 template<typename T>
 struct FLX_ResourceConfig : FLX_ObjectConfig {

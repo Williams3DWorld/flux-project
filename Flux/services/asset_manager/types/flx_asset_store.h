@@ -3,6 +3,7 @@
 #ifndef FLX_ASSET_STORE_H
 #define FLX_ASSET_STORE_H
 
+#include <string>
 #include "utils/flx_cache.h"
 
 template<typename T>

@@ -16,7 +16,7 @@ add_library (flux STATIC
         services/asset_manager/flx_asset_manager.h
         services/asset_manager/assets/flx_texture_source.cpp
         services/asset_manager/assets/flx_texture_source.h
-        types/flx_resource_type.h
+        types/flx_resource_types.h
         services/asset_manager/types/flx_asset_store.h
         services/asset_manager/loaders/flx_texture_loader.cpp
         services/asset_manager/loaders/flx_texture_loader.h
@@ -26,6 +26,19 @@ add_library (flux STATIC
         flx_renderer.h
         services/render_manager/flx_render_manager.cpp
         services/render_manager/flx_render_manager.h
+        services/input_manager/flx_input_manager.cpp
+        services/input_manager/flx_input_manager.h
+        services/input_manager/types/flx_input_device_types.h
+        services/input_manager/types/flx_scancodes.h
+        services/input_manager/types/flx_mouse_buttons.h
+        services/input_manager/devices/flx_input_device.h
+        FLX_Event.cpp
+        FLX_Event.h
+        services/input_manager/devices/flx_keyboard_device.cpp
+        services/input_manager/devices/flx_keyboard_device.h
+        types/flx_event_types.h
+        services/input_manager/devices/flx_input_device.cpp
+        services/input_manager/types/flx_input_action.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
