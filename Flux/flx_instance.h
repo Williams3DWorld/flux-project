@@ -7,6 +7,7 @@
 #include "services/input_manager/flx_input_manager.h"
 #include "services/asset_manager/flx_asset_manager.h"
 #include "services/render_manager/flx_render_manager.h"
+#include "services/scene_manager/flx_scene_manager.h"
 
 struct FLX_InstanceConfig : FLX_ObjectConfig {
     FLX_WindowConfig&& window;
@@ -25,6 +26,7 @@ private:
     std::shared_ptr<FLX_InputManager> _input_manager;
     std::shared_ptr<FLX_AssetManager> _asset_manager;
     std::shared_ptr<FLX_RenderManager> _render_manager;
+    std::shared_ptr<FLX_SceneManager> _scene_manager;
 };
 
 #endif

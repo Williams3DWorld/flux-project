@@ -18,16 +18,19 @@ void FLX_Instance::run() {
     _input_manager = std::make_shared<FLX_InputManager>(FLX_InputManager({.actions = {}}));
     _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));
     _render_manager = std::make_shared<FLX_RenderManager>(FLX_RenderManager({.window = window.get()}));
+    _scene_manager = std::make_shared<FLX_SceneManager>(FLX_SceneManager({}));
 
     // Assign context pointers
     ctx->input_manager = _input_manager.get();
     ctx->asset_manager = _asset_manager.get();
     ctx->render_manager = _render_manager.get();
+    ctx->scene_manager = _scene_manager.get();
 
     // Inject context
     _input_manager->inject(ctx.get());
     _asset_manager->inject(ctx.get());
     _render_manager->inject(ctx.get());
+    _scene_manager->inject(ctx.get());
 
     bool running = true;
 
