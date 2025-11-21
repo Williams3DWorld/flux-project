@@ -2,17 +2,16 @@
 
 #include <ranges>
 
-FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config) : FLX_Service(std::move(config)) {
-}
+FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config) : FLX_Service(std::move(config)) {}
 
 FLX_SceneManager::~FLX_SceneManager() {
     delete _active_scene;
     _scenes.clear();
 }
 
-void FLX_SceneManager::register_scene(const std::string& scene_id, FLX_Scene* scene) {
+void FLX_SceneManager::register_scene(const std::string& scene_id, std::unique_ptr<FLX_Scene> scene) {
     if (!_scenes.contains(scene_id)) {
-        _scenes[scene_id] = scene;
+        _scenes.emplace(scene_id, std::move(scene));
     }
 }
 
@@ -23,7 +22,7 @@ void FLX_SceneManager::set_active_scene(const std::string& scene_id) {
         return;
     }
 
-    if (_active_scene == it->second) {
+    if (_active_scene == it->second.get()) {
         return;
     }
 
@@ -34,7 +33,7 @@ void FLX_SceneManager::set_active_scene(const std::string& scene_id) {
 
     it->second->on_enter();
     it->second->set_is_active(true);
-    _active_scene = it->second;
+    _active_scene = it->second.get();
 }
 
 void FLX_SceneManager::update(float deltaTime) const {

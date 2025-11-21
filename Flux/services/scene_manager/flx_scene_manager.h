@@ -3,6 +3,7 @@
 #ifndef FLX_SCENE_MANAGER_H
 #define FLX_SCENE_MANAGER_H
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -16,12 +17,12 @@ public:
     explicit FLX_SceneManager(FLX_SceneManagerConfig&& config);
     ~FLX_SceneManager() override;
 
-    void register_scene(const std::string& scene_id, FLX_Scene* scene);
+    void register_scene(const std::string& scene_id, std::unique_ptr<FLX_Scene> scene);
     void set_active_scene(const std::string& scene_id);
     void update(float deltaTime) const;
 private:
-    FLX_Scene* _active_scene{};
-    std::unordered_map<std::string, FLX_Scene*> _scenes;
+    FLX_Scene* _active_scene;
+    std::unordered_map<std::string, std::unique_ptr<FLX_Scene>> _scenes;
 };
 
 #endif
