@@ -15,13 +15,13 @@ struct FLX_SceneManagerConfig : FLX_ServiceConfig {};
 class FLX_SceneManager final : public FLX_Service<FLX_SceneManagerConfig> {
 public:
     explicit FLX_SceneManager(FLX_SceneManagerConfig&& config);
-    ~FLX_SceneManager() override;
+    ~FLX_SceneManager() override = default;
 
     void register_scene(const std::string& scene_id, std::unique_ptr<FLX_Scene> scene);
     void set_active_scene(const std::string& scene_id);
     void update(float deltaTime) const;
 private:
-    FLX_Scene* _active_scene;
+    FLX_Scene* _active_scene = nullptr; // pointer to the currently active scene
     std::unordered_map<std::string, std::unique_ptr<FLX_Scene>> _scenes;
 };
 

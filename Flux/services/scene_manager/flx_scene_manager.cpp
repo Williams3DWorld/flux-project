@@ -4,11 +4,6 @@
 
 FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config) : FLX_Service(std::move(config)) {}
 
-FLX_SceneManager::~FLX_SceneManager() {
-    delete _active_scene;
-    _scenes.clear();
-}
-
 void FLX_SceneManager::register_scene(const std::string& scene_id, std::unique_ptr<FLX_Scene> scene) {
     if (!_scenes.contains(scene_id)) {
         _scenes.emplace(scene_id, std::move(scene));
