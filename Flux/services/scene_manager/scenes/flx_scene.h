@@ -13,6 +13,7 @@ public:
     virtual void update(float deltaTime) = 0;
 
     void set_is_active(const bool val) { _is_active = val; }
+
     [[nodiscard]] bool is_active() const { return _is_active; }
 private:
     bool _is_active = false;

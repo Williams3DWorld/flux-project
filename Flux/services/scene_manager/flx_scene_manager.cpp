@@ -1,20 +1,12 @@
 #include "flx_scene_manager.h"
 
-FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config) : FLX_Service(std::move(config)) {}
-
-bool FLX_SceneManager::register_scene(const std::string& scene_id, std::unique_ptr<FLX_Scene> scene) {
-    if (!_scenes.contains(scene_id)) {
-        _scenes.emplace(scene_id, std::move(scene));
-        return true;
-    }
-
-    return false;
-}
+FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config)
+    : FLX_Service(std::forward<FLX_SceneManagerConfig>(config)) {}
 
 bool FLX_SceneManager::set_active_scene(const std::string& scene_id) {
-    const auto it = _scenes.find(scene_id);
+    const auto it = _config.scenes.find(scene_id);
 
-    if (it == _scenes.end()) {
+    if (it == _config.scenes.end()) {
         return false;
     }
 
