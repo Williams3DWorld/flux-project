@@ -32,7 +32,6 @@ public:
 
     void create_track_pool(int pool_size);
     MixerUniquePtr create_mixer();
-
     MIX_Track* get_track();
     MIX_Track* load(std::string_view path) override;
 private:

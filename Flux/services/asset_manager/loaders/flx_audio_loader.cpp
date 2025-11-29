@@ -2,11 +2,17 @@
 #include <iostream>
 #include <filesystem>
 
+/**
+ * @param config configurations for the audio loader
+ */
 FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config)
     : FLX_Loader(std::move(config)), _mixer(create_mixer()) {
     create_track_pool(MAX_NUM_TRACKS);
 }
 
+/**
+ * @return MixerUniquePtr (std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>)
+ */
 MixerUniquePtr FLX_AudioLoader::create_mixer() {
     _device_id = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
     if (!_device_id) {
@@ -26,6 +32,10 @@ MixerUniquePtr FLX_AudioLoader::create_mixer() {
     };
 }
 
+/**
+ * @param path path to the audio file
+ * @return MIX_Track*
+ */
 MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
     const std::filesystem::path p(path);
 
@@ -49,8 +59,6 @@ MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
         .audio = AudioUniquePtr(sound, &MIX_DestroyAudio),
         .track = track
     });
-
-    MIX_DestroyTrack(track);
 
     return track;
 }
