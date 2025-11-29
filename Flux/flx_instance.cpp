@@ -37,6 +37,10 @@ void FLX_Instance::run() {
 
     std::cout << "Current working dir: " << SDL_GetBasePath() << std::endl;
 
+    FLX_AudioLoader audio_loader({});
+    MIX_Track* track = audio_loader.load("bgm.mp3");
+    MIX_PlayTrack(track, 0);
+
     bool running = true;
 
     while (running) {

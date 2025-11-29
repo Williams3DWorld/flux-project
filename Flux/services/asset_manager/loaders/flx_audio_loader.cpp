@@ -1,10 +1,17 @@
 #include "flx_audio_loader.h"
 #include <iostream>
+#include <filesystem>
 
-FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config) : FLX_Loader(std::move(config)) {
+FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config)
+    : FLX_Loader(std::move(config)), _audio_mixer(create_mixer()) {
+    create_track_pool(MAX_NUM_TRACKS);
+}
+
+MixerUniquePtr FLX_AudioLoader::create_mixer() {
     _audio_device_id = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
     if (!_audio_device_id) {
         std::cerr << "SDL_OpenAudioDevice failed: " << SDL_GetError() << "\n";
+        return MixerUniquePtr(nullptr, &MIX_DestroyMixer);
     }
 
     SDL_AudioSpec audio_spec;
@@ -13,16 +20,16 @@ FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config) : FLX_Loader(st
     audio_spec.format = SDL_AUDIO_F32;
     audio_spec.channels = 2;
 
-    _audio_mixer = MIX_CreateMixerDevice(_audio_device_id, &audio_spec);
-    if (!_audio_mixer) {
-        std::cerr << "Error creating mixer: " << SDL_GetError() << "\n";
-    }
-
-    create_track_pool(MAX_NUM_TRACKS);
+    return std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>(
+        MIX_CreateMixerDevice(_audio_device_id, &audio_spec),
+        &MIX_DestroyMixer
+    );
 }
 
-MIX_Audio* FLX_AudioLoader::load(std::string_view path) {
-    MIX_Audio* sound = MIX_LoadAudio(_audio_mixer, path.data(), true);
+MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
+    const std::filesystem::path p(path);
+
+    MIX_Audio* sound = MIX_LoadAudio(_audio_mixer.get(), path.data(), true);
     if (!sound) {
         std::cerr << "Error loading sound: " << SDL_GetError() << "\n";
         return nullptr;
@@ -34,28 +41,35 @@ MIX_Audio* FLX_AudioLoader::load(std::string_view path) {
     }
 
     _audio_source.push_back({
-        .identifier = "test_sound",
-        .audio = sound,
+        .identifier = p.stem().string(),
+        .audio = std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)>(sound, &MIX_DestroyAudio),
         .track = track
     });
 
-    return sound;
+    return track;
 }
 
-void FLX_AudioLoader::create_track_pool(int pool_size) {
+void FLX_AudioLoader::create_track_pool(const int pool_size) {
     if (pool_size <= 0) {
+        std::cerr << "Track pool size is equal to or less than 0!" << std::endl;
         return;
     }
 
     for (int i = 0; i < pool_size; i++) {
-        MIX_Track* track = MIX_CreateTrack(_audio_mixer);
-        _track_pool.push_back(track);
+        auto track = TrackUniquePtr(
+            MIX_CreateTrack(_audio_mixer.get()), &MIX_DestroyTrack
+        );
+        _track_pool.push_back(std::move(track));
     }
 }
 
 MIX_Track *FLX_AudioLoader::get_track() {
-    MIX_Track* track = _track_pool[0];
-    _track_pool.erase(_track_pool.begin());
+    if (_track_pool.empty()) {
+        std::cerr << "No tracks available!" << std::endl;
+        return nullptr;
+    }
+    MIX_Track* track = _track_pool.front().get();
+    _track_pool.pop_front();
     return track;
 }
 
