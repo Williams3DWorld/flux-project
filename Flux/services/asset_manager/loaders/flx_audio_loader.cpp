@@ -11,7 +11,7 @@ MixerUniquePtr FLX_AudioLoader::create_mixer() {
     _device_id = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
     if (!_device_id) {
         std::cerr << "SDL_OpenAudioDevice failed: " << SDL_GetError() << "\n";
-        return MixerUniquePtr(nullptr, &MIX_DestroyMixer);
+        return MixerUniquePtr{nullptr, &MIX_DestroyMixer};
     }
 
     SDL_AudioSpec audio_spec;
@@ -20,22 +20,26 @@ MixerUniquePtr FLX_AudioLoader::create_mixer() {
     audio_spec.format = SDL_AUDIO_F32;
     audio_spec.channels = 2;
 
-    return std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>(
+    return MixerUniquePtr{
         MIX_CreateMixerDevice(_device_id, &audio_spec),
         &MIX_DestroyMixer
-    );
+    };
 }
 
 MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
     const std::filesystem::path p(path);
 
-    MIX_Audio* sound = MIX_LoadAudio(_mixer.get(), path.data(), true);
+    MIX_Audio* sound = MIX_LoadAudio(_mixer.get(), p.string().c_str(), true);
     if (!sound) {
         std::cerr << "Error loading sound: " << SDL_GetError() << "\n";
         return nullptr;
     }
 
     MIX_Track* track = get_track();
+    if (!track) {
+        std::cerr << "Unable to get track from pool!" << "\n";
+        return nullptr;
+    }
     if (!MIX_SetTrackAudio(track, sound)) {
         std::cerr << "MIX_SetTrackAudio failed: " << SDL_GetError() << "\n";
     }
@@ -46,9 +50,14 @@ MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
         .track = track
     });
 
+    MIX_DestroyTrack(track);
+
     return track;
 }
 
+/**
+ * @param pool_size the size of the track pool size
+ */
 void FLX_AudioLoader::create_track_pool(const int pool_size) {
     if (pool_size <= 0) {
         std::cerr << "Track pool size is equal to or less than 0!" << std::endl;

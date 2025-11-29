@@ -34,9 +34,9 @@ public:
     MixerUniquePtr create_mixer();
 
     MIX_Track* get_track();
-    MIX_Track* load(const std::string_view path) override;
+    MIX_Track* load(std::string_view path) override;
 private:
-    SDL_AudioDeviceID _device_id;
+    SDL_AudioDeviceID _device_id{};
     MixerUniquePtr _mixer;
     std::vector<FLX_AudioSource> _sources;
     std::deque<TrackUniquePtr> _track_pool;
