@@ -3,13 +3,13 @@
 #include <filesystem>
 
 FLX_AudioLoader::FLX_AudioLoader(FLX_AudioLoaderConfig&& config)
-    : FLX_Loader(std::move(config)), _audio_mixer(create_mixer()) {
+    : FLX_Loader(std::move(config)), _mixer(create_mixer()) {
     create_track_pool(MAX_NUM_TRACKS);
 }
 
 MixerUniquePtr FLX_AudioLoader::create_mixer() {
-    _audio_device_id = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
-    if (!_audio_device_id) {
+    _device_id = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
+    if (!_device_id) {
         std::cerr << "SDL_OpenAudioDevice failed: " << SDL_GetError() << "\n";
         return MixerUniquePtr(nullptr, &MIX_DestroyMixer);
     }
@@ -21,7 +21,7 @@ MixerUniquePtr FLX_AudioLoader::create_mixer() {
     audio_spec.channels = 2;
 
     return std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>(
-        MIX_CreateMixerDevice(_audio_device_id, &audio_spec),
+        MIX_CreateMixerDevice(_device_id, &audio_spec),
         &MIX_DestroyMixer
     );
 }
@@ -29,7 +29,7 @@ MixerUniquePtr FLX_AudioLoader::create_mixer() {
 MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
     const std::filesystem::path p(path);
 
-    MIX_Audio* sound = MIX_LoadAudio(_audio_mixer.get(), path.data(), true);
+    MIX_Audio* sound = MIX_LoadAudio(_mixer.get(), path.data(), true);
     if (!sound) {
         std::cerr << "Error loading sound: " << SDL_GetError() << "\n";
         return nullptr;
@@ -40,7 +40,7 @@ MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
         std::cerr << "MIX_SetTrackAudio failed: " << SDL_GetError() << "\n";
     }
 
-    _audio_source.push_back({
+    _sources.push_back({
         .identifier = p.stem().string(),
         .audio = std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)>(sound, &MIX_DestroyAudio),
         .track = track
@@ -57,7 +57,7 @@ void FLX_AudioLoader::create_track_pool(const int pool_size) {
 
     for (int i = 0; i < pool_size; i++) {
         auto track = TrackUniquePtr(
-            MIX_CreateTrack(_audio_mixer.get()), &MIX_DestroyTrack
+            MIX_CreateTrack(_mixer.get()), &MIX_DestroyTrack
         );
         _track_pool.push_back(std::move(track));
     }
