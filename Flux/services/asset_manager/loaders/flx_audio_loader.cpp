@@ -42,7 +42,7 @@ MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
 
     _sources.push_back({
         .identifier = p.stem().string(),
-        .audio = std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)>(sound, &MIX_DestroyAudio),
+        .audio = AudioUniquePtr(sound, &MIX_DestroyAudio),
         .track = track
     });
 
@@ -68,7 +68,7 @@ MIX_Track *FLX_AudioLoader::get_track() {
         std::cerr << "No tracks available!" << std::endl;
         return nullptr;
     }
-    MIX_Track* track = _track_pool.front().get();
+    MIX_Track* track = _track_pool.front().release();
     _track_pool.pop_front();
     return track;
 }

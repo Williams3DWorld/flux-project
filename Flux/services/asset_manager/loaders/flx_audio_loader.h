@@ -23,6 +23,7 @@ struct FLX_AudioSource {
 
 using MixerUniquePtr = std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>;
 using TrackUniquePtr = std::unique_ptr<MIX_Track, decltype(&MIX_DestroyTrack)>;
+using AudioUniquePtr = std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)>;
 
 class FLX_AudioLoader final : public FLX_Loader<FLX_AudioLoaderConfig, MIX_Track*> {
 public:
