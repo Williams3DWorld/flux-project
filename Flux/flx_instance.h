@@ -11,6 +11,7 @@
 
 struct FLX_InstanceConfig : FLX_ObjectConfig {
     FLX_WindowConfig&& window;
+    FLX_SceneManagerConfig&& scene_manager;
 };
 
 class FLX_Instance final : public FLX_Object<FLX_InstanceConfig> {

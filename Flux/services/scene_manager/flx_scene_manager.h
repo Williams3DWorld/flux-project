@@ -20,7 +20,7 @@ public:
     ~FLX_SceneManager() override = default;
 
     bool set_active_scene(const std::string& scene_id);
-    void update(float deltaTime) const;
+    void update(float deltaTime);
 private:
     FLX_Scene* _active_scene = nullptr;
 };

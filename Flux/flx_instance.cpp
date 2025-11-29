@@ -1,11 +1,7 @@
 #include "flx_instance.h"
 #include "flx_context.h"
 #include "flx_event.h"
-
 #include <iostream>
-
-#include "./services/scene_manager/scenes/flx_test_scene_01.h"
-#include "./services/scene_manager/scenes/flx_test_scene_02.h"
 
 FLX_Instance::FLX_Instance(FLX_InstanceConfig&& config) :
     FLX_Object(std::move(config)) {}
@@ -23,7 +19,7 @@ void FLX_Instance::run() {
     _input_manager = std::make_shared<FLX_InputManager>(FLX_InputManager({.actions = {}}));
     _asset_manager = std::make_shared<FLX_AssetManager>(FLX_AssetManager({}));
     _render_manager = std::make_shared<FLX_RenderManager>(FLX_RenderManager({.window = window.get()}));
-    _scene_manager = std::make_shared<FLX_SceneManager>(FLX_SceneManager({.scenes = {}}));
+    _scene_manager = std::make_shared<FLX_SceneManager>(std::move(_config.scene_manager));
 
     // Assign context pointers
     ctx->input_manager = _input_manager.get();

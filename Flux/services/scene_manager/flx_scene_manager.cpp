@@ -21,13 +21,19 @@ bool FLX_SceneManager::set_active_scene(const std::string& scene_id) {
 
     it->second->on_enter();
     it->second->set_is_active(true);
+    it->second->set_next_scene_id("");
+
     _active_scene = it->second.get();
 
     return true;
 }
 
-void FLX_SceneManager::update(float deltaTime) const {
+void FLX_SceneManager::update(float deltaTime) {
     if (_active_scene) {
         _active_scene->update(deltaTime);
+
+        if (!_active_scene->get_next_scene_id().empty()) {
+            set_active_scene(_active_scene->get_next_scene_id());
+        }
     }
 }
