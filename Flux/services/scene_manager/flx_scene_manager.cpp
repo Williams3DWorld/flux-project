@@ -1,7 +1,10 @@
 #include "flx_scene_manager.h"
+#include <iostream>
 
 FLX_SceneManager::FLX_SceneManager(FLX_SceneManagerConfig&& config)
-    : FLX_Service(std::forward<FLX_SceneManagerConfig>(config)) {}
+    : FLX_Service(std::forward<FLX_SceneManagerConfig>(config)) {
+
+}
 
 bool FLX_SceneManager::set_active_scene(const std::string& scene_id) {
     const auto it = _config.scenes.find(scene_id);
@@ -33,6 +36,7 @@ void FLX_SceneManager::update(float deltaTime) {
         _active_scene->update(deltaTime);
 
         if (!_active_scene->get_next_scene_id().empty()) {
+            std::cout << "transitioning to " << _active_scene->get_next_scene_id() << std::endl;
             set_active_scene(_active_scene->get_next_scene_id());
         }
     }

@@ -1,13 +1,18 @@
 ﻿#include <flx.h>
 
+#include "scenes/menu_scene.h"
+#include "scenes/game_scene.h"
+
 int main(int argc, char** argv) {
 	FLX_Instance instance = FLX_CreateInstance({
 		.window = FLX_WindowConfig({
 			.title = "Sandbox"
 		}),
 		.scene_manager = FLX_SceneManagerConfig({
-	        //{"test_scene_01", std::make_shared<FLX_TestScene01>()},
-			//{"test_scene_02", std::make_shared<FLX_TestScene02>()},
+			.scenes = {
+				{"menu_scene", std::make_shared<MenuScene>()},
+				{"game_scene", std::make_shared<GameScene>()}
+			}
 		})
 	});
 

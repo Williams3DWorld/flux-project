@@ -16,10 +16,10 @@ public:
     void set_is_active(const bool val) { _is_active = val; }
 
     [[nodiscard]] bool is_active() const { return _is_active; }
-    const std::string& get_next_scene_id() const { return _next_scene_id; }
+    [[nodiscard]] const std::string& get_next_scene_id() const { return _next_scene_id; }
 private:
     bool _is_active = false;
-    std::string _next_scene_id = "";
+    std::string _next_scene_id;
 };
 
 #endif

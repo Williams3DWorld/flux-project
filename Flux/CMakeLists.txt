@@ -42,9 +42,6 @@ add_library (flux STATIC
         services/scene_manager/flx_scene_manager.cpp
         services/scene_manager/flx_scene_manager.h
         services/scene_manager/scenes/flx_scene.h
-        services/scene_manager/scenes/flx_test_scene_01.h
-        services/scene_manager/scenes/flx_test_scene_01.h
-        services/scene_manager/scenes/flx_test_scene_02.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
