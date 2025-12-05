@@ -15,15 +15,15 @@ using FLX_AudioLoaderConfig = FLX_LoaderConfig;
 
 constexpr int MAX_NUM_TRACKS = 10;
 
-struct FLX_AudioSource {
-    std::string identifier;
-    std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)> audio;
-    MIX_Track* track;
-};
-
 using MixerUniquePtr = std::unique_ptr<MIX_Mixer, decltype(&MIX_DestroyMixer)>;
 using TrackUniquePtr = std::unique_ptr<MIX_Track, decltype(&MIX_DestroyTrack)>;
 using AudioUniquePtr = std::unique_ptr<MIX_Audio, decltype(&MIX_DestroyAudio)>;
+
+struct FLX_AudioSource {
+    std::string identifier;
+    AudioUniquePtr audio;
+    TrackUniquePtr track;
+};
 
 class FLX_AudioLoader final : public FLX_Loader<FLX_AudioLoaderConfig, MIX_Track*> {
 public:
@@ -32,10 +32,10 @@ public:
 
     void create_track_pool(int pool_size);
     MixerUniquePtr create_mixer();
-    MIX_Track* get_track();
+    TrackUniquePtr get_track();
     MIX_Track* load(std::string_view path) override;
 private:
-    SDL_AudioDeviceID _device_id{};
+    SDL_AudioDeviceID _device_id {};
     MixerUniquePtr _mixer;
     std::vector<FLX_AudioSource> _sources;
     std::deque<TrackUniquePtr> _track_pool;

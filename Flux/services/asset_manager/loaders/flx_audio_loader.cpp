@@ -45,22 +45,25 @@ MIX_Track* FLX_AudioLoader::load(const std::string_view path) {
         return nullptr;
     }
 
-    MIX_Track* track = get_track();
+    TrackUniquePtr track = get_track();
+
     if (!track) {
         std::cerr << "Unable to get track from pool!" << "\n";
         return nullptr;
     }
-    if (!MIX_SetTrackAudio(track, sound)) {
+    if (!MIX_SetTrackAudio(track.get(), sound)) {
         std::cerr << "MIX_SetTrackAudio failed: " << SDL_GetError() << "\n";
     }
+
+    MIX_Track* track_raw = track.get();
 
     _sources.push_back({
         .identifier = p.stem().string(),
         .audio = AudioUniquePtr(sound, &MIX_DestroyAudio),
-        .track = track
+        .track = std::move(track)
     });
 
-    return track;
+    return track_raw;
 }
 
 /**
@@ -80,14 +83,15 @@ void FLX_AudioLoader::create_track_pool(const int pool_size) {
     }
 }
 
-MIX_Track *FLX_AudioLoader::get_track() {
+TrackUniquePtr FLX_AudioLoader::get_track() {
     if (_track_pool.empty()) {
         std::cerr << "No tracks available!" << std::endl;
-        return nullptr;
+        return TrackUniquePtr{nullptr, &MIX_DestroyTrack};
     }
-    MIX_Track* track = _track_pool.front().release();
+
+    auto ptr = std::move(_track_pool.front());
     _track_pool.pop_front();
-    return track;
+    return ptr;
 }
 
 
