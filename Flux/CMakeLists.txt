@@ -39,6 +39,12 @@ add_library (flux STATIC
         types/flx_event_types.h
         services/input_manager/devices/flx_input_device.cpp
         services/input_manager/types/flx_input_action.h
+        services/scene_manager/nodes/flx_node.cpp
+        services/scene_manager/nodes/flx_node.h
+        services/scene_manager/components/flx_translate_component.h
+        services/scene_manager/flx_scene.cpp
+        services/scene_manager/flx_scene.h
+        services/scene_manager/flx_scene.h
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
@@ -51,6 +57,7 @@ target_include_directories(flux
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_image/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_mixer/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/glm
 )
 
 target_link_libraries(flux PUBLIC
