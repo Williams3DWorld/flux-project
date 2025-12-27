@@ -12,7 +12,7 @@ public:
     void update(float deltaTime) const;
     void render() const {}
 private:
-    std::vector<std::shared_ptr<FLX_Node>> _children;
+    std::vector<std::unique_ptr<FLX_Node>> _children;
 };
 
 #endif
