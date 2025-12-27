@@ -40,6 +40,8 @@ void FLX_SceneNode::update(float deltaTime) const {
 }
 
 void FLX_SceneNode::render() const {
+    this->renderSelf();
+
     for (const auto& child : _children) {
         if (child->isEnabled()) {
             child->render();

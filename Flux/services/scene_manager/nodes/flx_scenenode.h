@@ -6,7 +6,7 @@
 #include <vector>
 #include <memory>
 
-class FLX_SceneNode final {
+class FLX_SceneNode {
 public:
     FLX_SceneNode() = default;
     virtual ~FLX_SceneNode() = default;
@@ -21,8 +21,10 @@ public:
     [[nodiscard]] FLX_SceneNode* getParent() const { return _parent; }
     [[nodiscard]] const std::vector<std::unique_ptr<FLX_SceneNode>>& getChildren() const { return _children; }
 
-    void update(float deltaTime) const;
-    void render() const;
+    virtual void update(float deltaTime) const;
+    virtual void render() const;
+protected:
+    virtual void renderSelf() const = 0;
 private:
     bool _enabled = true;
     std::vector<std::unique_ptr<FLX_SceneNode>> _children;
