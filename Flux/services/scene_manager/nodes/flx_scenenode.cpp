@@ -32,21 +32,21 @@ void FLX_SceneNode::setEnabled(const bool value) {
 }
 
 void FLX_SceneNode::update(float deltaTime) const {
-    if (!_enabled) return;
+    if (_enabled) {
+        this->updateSelf();
 
-    this->updateSelf();
-
-    for (const auto& child : _children) {
-        child->update(deltaTime);
+        for (const auto& child : _children) {
+            child->update(deltaTime);
+        }
     }
 }
 
 void FLX_SceneNode::render() const {
-    if (!_enabled) return;
+    if (_enabled) {
+        this->renderSelf();
 
-    this->renderSelf();
-
-    for (const auto& child : _children) {
-        child->render();
+        for (const auto& child : _children) {
+            child->render();
+        }
     }
 }
