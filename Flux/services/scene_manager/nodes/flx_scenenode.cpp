@@ -31,7 +31,7 @@ void FLX_SceneNode::setEnabled(const bool value) {
     _enabled = value;
 }
 
-void FLX_SceneNode::update(float deltaTime) const {
+void FLX_SceneNode::update(float deltaTime) {
     if (_enabled) {
         this->updateSelf();
 
