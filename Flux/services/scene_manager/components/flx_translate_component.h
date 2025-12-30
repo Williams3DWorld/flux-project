@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef FLX_TRANSFORM_COMPONENT_H
-#define FLX_TRANSFORM_COMPONENT_H
+#ifndef FLX_TRANSLATE_COMPONENT_H
+#define FLX_TRANSLATE_COMPONENT_H
 
 #include "flx_component.h"
 
