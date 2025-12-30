@@ -1,11 +1,19 @@
 #pragma once
 
-#ifndef FLX_TRANSLATE_COMPONENT_H
-#define FLX_TRANSLATE_COMPONENT_H
+#ifndef FLX_TRANSFORM_COMPONENT_H
+#define FLX_TRANSFORM_COMPONENT_H
 
-class FLX_TranslateComponent {
+#include "flx_component.h"
+
+struct FLX_TranslateConfig {
+    //vec3 position;
+};
+
+class FLX_TranslateComponent final :
+    public FLX_Component<FLX_TranslateConfig> {
 public:
-private:
+    explicit FLX_TranslateComponent(FLX_ComponentConfig<FLX_TranslateConfig> config); // constructor
+    ~FLX_TranslateComponent() override = default; // destructor
 };
 
 #endif
