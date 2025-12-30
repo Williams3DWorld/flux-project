@@ -39,8 +39,8 @@ add_library (flux STATIC
         types/flx_event_types.h
         services/input_manager/devices/flx_input_device.cpp
         services/input_manager/types/flx_input_action.h
-        services/scene_manager/nodes/flx_scenenode.cpp
-        services/scene_manager/nodes/flx_scenenode.h
+        services/scene_manager/nodes/flx_node2d.cpp
+        services/scene_manager/nodes/flx_node2d.h
         services/scene_manager/components/flx_translate_component.h
         services/scene_manager/nodes/flx_node.h
         services/scene_manager/nodes/flx_node.h
