@@ -8,7 +8,10 @@
 
 class FLX_Node2D : public FLX_Node {
 public:
-    FLX_Node2D() = default; // constructor
+    FLX_Node2D() : // constructor
+        FLX_Node({}),
+        translate_component({})
+    {}
     ~FLX_Node2D() override = default; // destructor
 
     virtual void render() = 0;
