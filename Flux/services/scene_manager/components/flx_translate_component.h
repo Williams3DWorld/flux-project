@@ -4,7 +4,6 @@
 #define FLX_TRANSLATE_COMPONENT_H
 
 #include <glm/vec3.hpp>
-
 #include "flx_component.h"
 
 struct FLX_TranslateConfig {
@@ -14,7 +13,8 @@ struct FLX_TranslateConfig {
 class FLX_TranslateComponent final :
     public FLX_Component<FLX_TranslateConfig> {
 public:
-    explicit FLX_TranslateComponent(FLX_ComponentConfig<FLX_TranslateConfig> config); // constructor
+    explicit FLX_TranslateComponent(const FLX_ComponentConfig<FLX_TranslateConfig> config)
+        : FLX_Component(config) {}; // constructor
     ~FLX_TranslateComponent() override = default; // destructor
 };
 

@@ -23,7 +23,7 @@ public:
 
 template<typename T>
 FLX_Component<T>::FLX_Component(FLX_ComponentConfig<T> config) :
-    FLX_Object<FLX_ComponentConfig<T>>(std::move<FLX_ComponentConfig<T>>(config)) {}
+    FLX_Object<FLX_ComponentConfig<T>>(std::move(config)) {}
 
 template<typename T>
 [[nodiscard]] T FLX_Component<T>::value() const noexcept {

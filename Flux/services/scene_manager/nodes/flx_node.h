@@ -3,13 +3,14 @@
 #ifndef FLX_NODE_H
 #define FLX_NODE_H
 
+#include "flx_object.h"
 #include <vector>
 #include <memory>
 
-class FLX_Node {
+class FLX_Node : public FLX_Object<FLX_ObjectConfig> {
 public:
-    FLX_Node() = default;
-    virtual ~FLX_Node() = default;
+    explicit FLX_Node(FLX_ObjectConfig&& config) : FLX_Object(std::move(config)) {}
+    ~FLX_Node() override = default;
 
     // scene node specific functions
     void setEnabled(bool value); // enable the node
