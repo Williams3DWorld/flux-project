@@ -57,7 +57,7 @@ target_include_directories(flux
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_image/include
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/SDL3_mixer/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/libs/glm
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/glm-1.0.2/include
 )
 
 target_link_libraries(flux PUBLIC

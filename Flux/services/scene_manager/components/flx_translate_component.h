@@ -3,10 +3,12 @@
 #ifndef FLX_TRANSLATE_COMPONENT_H
 #define FLX_TRANSLATE_COMPONENT_H
 
+#include <glm/vec3.hpp>
+
 #include "flx_component.h"
 
 struct FLX_TranslateConfig {
-    //vec3 position;
+    glm::vec3 position;
 };
 
 class FLX_TranslateComponent final :
